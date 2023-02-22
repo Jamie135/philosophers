@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:59:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:52:24 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:06:58 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	*ft_galina_monitor(void *args)
 			if (time_now - philo[i].last_meal > philo[i].lifespan)
 			{
 				dying(philo, i);
-				pthread_mutex_unlock(&philo->lock_print);
+				pthread_mutex_unlock(&philo->lock);
 				return (NULL);
 			}
 		}

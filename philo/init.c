@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 23:39:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 16:01:01 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:06:51 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_mutex(t_main *args)
 	mutex = malloc(sizeof(pthread_mutex_t) * nbr_ph);
 	while (nbr_ph--)
 		pthread_mutex_init(&mutex[nbr_ph], NULL);
-	pthread_mutex_init(&args->lock_print, NULL);
+	pthread_mutex_init(&args->lock, NULL);
 	args->forks = mutex;
 }
 

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:06:12 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 16:00:29 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:06:13 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philo
 	time_t			start;
 	int				stop;
 	time_t			lifespan;
-	pthread_mutex_t	lock_print;
+	pthread_mutex_t	lock;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	struct s_main	*arg;
@@ -55,7 +55,7 @@ typedef struct s_main
 	int				dead;
 	pthread_mutex_t	*forks;
 	pthread_t		*tids;
-	pthread_mutex_t	lock_print;
+	pthread_mutex_t	lock;
 	t_philo			*philosophers;
 }					t_main;
 
