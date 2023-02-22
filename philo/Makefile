@@ -11,6 +11,7 @@ INC =	philo.h
 SRCS =	philo.c \
 		utils.c \
 		init.c \
+		forks.c \
 		eat_sleep_think.c \
 		process.c \
 		free.c

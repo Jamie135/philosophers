@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 22:47:35 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/10 15:41:51 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:50:45 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	valid_args(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 	{
-		ft_check_args();
+		printf("%s\n", ERROR_ARGS);
 		return (1);
 	}
 	i = 1;

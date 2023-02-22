@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:06:12 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/10 15:41:00 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:59:52 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+# define ERROR_ARGS "Error: There must be 4 or 5 arguments"
+
 struct	s_arg;
 
 typedef struct s_philo
 {
-	int				philo_id;
+	int				id;
 	int				total_nbr_of_meals;
 	int				total_nbr_of_meals_1;
 	time_t			time_of_last_meal;
@@ -36,15 +38,15 @@ typedef struct s_philo
 	int				stop;
 	time_t			start_time;
 	pthread_mutex_t	lock_print;
-	pthread_mutex_t	*l_f;
-	pthread_mutex_t	*r_f;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	struct s_arg	*arg;
 }					t_philo;
 
 typedef struct s_arg
 {
 	int				nbr_philo;
-	int				philo_id;
+	int				id;
 	time_t			start_time;
 	int				time_to_die;
 	int				time_to_eat;
@@ -57,7 +59,7 @@ typedef struct s_arg
 	t_philo			*all_philos;
 }					t_arg;
 
-void	taking_forks(t_philo *philo);
+void	get_fork(t_philo *philo);
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);

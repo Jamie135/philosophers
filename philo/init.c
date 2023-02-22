@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 23:39:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/08 15:27:41 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:00:14 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_init_philosophers(t_arg *args)
 	philos = malloc(sizeof(t_philo) * args->nbr_philo);
 	while (i < args->nbr_philo)
 	{
-		philos[i].philo_id = i;
+		philos[i].id = i;
 		philos[i].nbr_philo = args->nbr_philo;
 		philos[i].total_nbr_of_meals = 0;
 		philos[i].total_nbr_of_meals_1 = args->nbr_of_meals;
@@ -31,10 +31,10 @@ void	ft_init_philosophers(t_arg *args)
 		philos[i].time_of_last_meal = ft_time();
 		philos[i].limit_of_life = args->time_to_die;
 		philos[i].stop = 0;
-		philos[i].l_f = \
-			&args->forks[philos[i].philo_id];
-		philos[i].r_f = \
-			&args->forks[(philos[i].philo_id + 1) % args->nbr_philo];
+		philos[i].left_fork = \
+			&args->forks[philos[i].id];
+		philos[i].right_fork = \
+			&args->forks[(philos[i].id + 1) % args->nbr_philo];
 		philos[i].arg = args;
 		i++;
 	}

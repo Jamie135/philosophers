@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:59:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/08 15:29:22 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:01:02 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	died_philo(t_philo *philo, int i)
 	philo->arg->dead = 1;
 	pthread_mutex_lock(&philo->lock_print);
 	printf("%ld %d died\n", ft_time() - philo->start_time,
-		philo[i].philo_id + 1);
+		philo[i].id + 1);
 	i = -1;
 	while (i < philo[i].nbr_philo)
 	{
@@ -91,7 +91,7 @@ void	*ft_process(void *args)
 	{
 		if (philo->arg->dead || philo->stop || ft_cnt_of_meals(philo))
 			return (NULL);
-		taking_forks(philo);
+		get_fork(philo);
 		if (philo->arg->dead || philo->stop || ft_cnt_of_meals(philo))
 			return (NULL);
 		eating(philo);
