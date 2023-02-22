@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:33:25 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:14:41 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:40:35 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	destroy_mutex(t_arg *args)
 {
 	int	nbr_ph;
 
-	nbr_ph = args->nbr_philo;
+	nbr_ph = args->num;
 	while (nbr_ph--)
 	{
 		pthread_mutex_unlock(&args->forks[nbr_ph]);

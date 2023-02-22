@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:59:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:25:25 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:52:24 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ int	count_meals(t_philo *philo)
 	int	flag_enough;
 	int	i;
 
-	if (philo->total_nbr_of_meals != -1 \
-		&& philo->total_nbr_of_meals_1 > 0)
+	if (philo->eaten_meals != -1 \
+		&& philo->meals > 0)
 	{
 		flag_enough = 1;
 		i = -1;
-		while (++i < philo->nbr_philo)
-			if (philo[i].total_nbr_of_meals < philo->total_nbr_of_meals_1)
+		while (++i < philo->num)
+			if (philo[i].eaten_meals < philo->meals)
 				flag_enough = 0;
 		if (flag_enough == 1)
 		{
 			i = -1;
-			while (i < philo[i].nbr_philo)
+			while (i < philo[i].num)
 			{
 				philo[i].stop = 1;
 				i++;
@@ -44,8 +44,8 @@ void	*do_process(void *args)
 	t_philo		*philo;
 
 	philo = (t_philo *)args;
-	philo->time_of_last_meal = ft_time();
-	philo->start_time = ft_time();
+	philo->last_meal = ft_time();
+	philo->start = ft_time();
 	while (!philo->arg->dead)
 	{
 		if (philo->arg->dead || philo->stop || count_meals(philo))
@@ -77,10 +77,10 @@ void	*ft_galina_monitor(void *args)
 	while (philo[i].stop == 0)
 	{
 		i = -1;
-		while (++i < philo->nbr_philo)
+		while (++i < philo->num)
 		{
 			time_now = ft_time();
-			if (time_now - philo[i].time_of_last_meal > philo[i].limit_of_life)
+			if (time_now - philo[i].last_meal > philo[i].lifespan)
 			{
 				dying(philo, i);
 				pthread_mutex_unlock(&philo->lock_print);

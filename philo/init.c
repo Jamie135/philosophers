@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 23:39:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:24:31 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:52:03 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	init_args(t_arg *args, int argc, char **argv)
 {
-	args->nbr_philo = ft_atoi(argv[1]);
+	args->num = ft_atoi(argv[1]);
 	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]);
 	args->time_to_sleep = ft_atoi(argv[4]);
 	args->dead = 0;
 	if (argc == 6)
-		args->nbr_of_meals = ft_atoi(argv[5]);
+		args->meals = ft_atoi(argv[5]);
 	if (argc == 5)
 	{
-		if (args->nbr_philo < 1)
+		if (args->num < 1)
 			return (0);
-		args->nbr_of_meals = -1;
+		args->meals = -1;
 	}
 	if (argc == 6)
 	{
-		if (args->nbr_of_meals < 1)
+		if (args->meals < 1)
 			return (0);
 	}
 	return (0);
@@ -40,7 +40,7 @@ void	init_mutex(t_arg *args)
 	int				nbr_ph;
 	pthread_mutex_t	*mutex;
 
-	nbr_ph = args->nbr_philo;
+	nbr_ph = args->num;
 	mutex = malloc(sizeof(pthread_mutex_t) * nbr_ph);
 	while (nbr_ph--)
 		pthread_mutex_init(&mutex[nbr_ph], NULL);
@@ -54,21 +54,21 @@ void	init_philo(t_arg *args)
 	t_philo	*philos;
 
 	i = 0;
-	philos = malloc(sizeof(t_philo) * args->nbr_philo);
-	while (i < args->nbr_philo)
+	philos = malloc(sizeof(t_philo) * args->num);
+	while (i < args->num)
 	{
 		philos[i].id = i;
-		philos[i].nbr_philo = args->nbr_philo;
-		philos[i].total_nbr_of_meals = 0;
-		philos[i].total_nbr_of_meals_1 = args->nbr_of_meals;
+		philos[i].num = args->num;
+		philos[i].eaten_meals = 0;
+		philos[i].meals = args->meals;
 		philos[i].time_to_eat = args->time_to_eat;
 		philos[i].time_to_sleep = args->time_to_sleep;
 		philos[i].time_to_die = args->time_to_die;
-		philos[i].time_of_last_meal = ft_time();
-		philos[i].limit_of_life = args->time_to_die;
+		philos[i].last_meal = ft_time();
+		philos[i].lifespan = args->time_to_die;
 		philos[i].stop = 0;
 		philos[i].left_fork = &args->forks[philos[i].id];
-		philos[i].right_fork = &args->forks[(philos[i].id + 1) % args->nbr_philo];
+		philos[i].right_fork = &args->forks[(philos[i].id + 1) % args->num];
 		philos[i].arg = args;
 		i++;
 	}
@@ -83,7 +83,7 @@ void	init_threads(t_arg *args)
 	pthread_t	s_tid;
 
 	i = 0;
-	nbr_ph = args->nbr_philo;
+	nbr_ph = args->num;
 	threads = malloc(sizeof(pthread_t) * nbr_ph);
 	while (i < nbr_ph)
 	{	
@@ -100,7 +100,7 @@ void	end_threads(t_arg *args)
 {
 	int	nbr_ph;
 
-	nbr_ph = args->nbr_philo;
+	nbr_ph = args->num;
 	if (nbr_ph == 1)
 	{
 		pthread_mutex_unlock(&args->forks[0]);

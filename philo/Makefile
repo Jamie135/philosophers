@@ -12,7 +12,7 @@ SRCS =	philo.c \
 		utils.c \
 		init.c \
 		forks.c \
-		eat_sleep_think.c \
+		status.c \
 		process.c \
 		free.c
 
