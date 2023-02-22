@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:06:12 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 16:06:13 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:09:59 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-
-# define ERROR_ARGS "Error: There must be 4 or 5 arguments"
 
 struct	s_main;
 

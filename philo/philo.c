@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 22:47:35 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:57:32 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:09:48 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	valid_args(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 	{
-		printf("%s\n", ERROR_ARGS);
+		printf("Error: There must be 4 or 5 arguments\n");
 		return (1);
 	}
 	i = 1;
@@ -26,7 +26,7 @@ static int	valid_args(int argc, char **argv)
 	{
 		if (!ft_is_digit(argv[i]) || (!ft_atoi(argv[i])))
 		{
-			printf("Invalid argument\n");
+			printf("Invalid arguments\n");
 			return (1);
 		}
 		i++;
