@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:06:12 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:51:40 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:00:29 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define ERROR_ARGS "Error: There must be 4 or 5 arguments"
 
-struct	s_arg;
+struct	s_main;
 
 typedef struct s_philo
 {
@@ -40,10 +40,10 @@ typedef struct s_philo
 	pthread_mutex_t	lock_print;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	struct s_arg	*arg;
+	struct s_main	*arg;
 }					t_philo;
 
-typedef struct s_arg
+typedef struct s_main
 {
 	int				num;
 	int				id;
@@ -56,15 +56,15 @@ typedef struct s_arg
 	pthread_mutex_t	*forks;
 	pthread_t		*tids;
 	pthread_mutex_t	lock_print;
-	t_philo			*all_philos;
-}					t_arg;
+	t_philo			*philosophers;
+}					t_main;
 
 /* init.c */
-int		init_args(t_arg *args, int argc, char **argv);
-void	init_mutex(t_arg *args);
-void	init_philo(t_arg *args);
-void	init_threads(t_arg *args);
-void	end_threads(t_arg *args);
+int		init_args(t_main *args, int argc, char **argv);
+void	init_mutex(t_main *args);
+void	init_philo(t_main *args);
+void	init_threads(t_main *args);
+void	end_threads(t_main *args);
 
 /* process */
 int		count_meals(t_philo *philo);
@@ -89,7 +89,7 @@ int		ft_atoi(const char *str);
 int		ft_is_digit(char *str);
 
 /* free.c */
-void	free_args(t_arg *args);
-void	destroy_mutex(t_arg *args);
+void	free_args(t_main *args);
+void	destroy_mutex(t_main *args);
 
 #endif

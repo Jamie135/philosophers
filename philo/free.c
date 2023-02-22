@@ -6,13 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:33:25 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:40:35 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:02:12 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	destroy_mutex(t_arg *args)
+void	destroy_mutex(t_main *args)
 {
 	int	nbr_ph;
 
@@ -26,9 +26,9 @@ void	destroy_mutex(t_arg *args)
 	pthread_mutex_destroy(&(*args).lock_print);
 }
 
-void	free_args(t_arg *args)
+void	free_args(t_main *args)
 {
 	free(args->tids);
-	free(args->all_philos);
+	free(args->philosophers);
 	free(args->forks);
 }

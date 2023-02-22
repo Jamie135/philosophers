@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 22:47:35 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:18:26 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:57:32 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	valid_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_arg	args;
+	t_main	args;
 
 	if (valid_args(argc, argv))
 		return (1);

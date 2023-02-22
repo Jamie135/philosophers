@@ -6,13 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 23:39:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:52:03 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:01:01 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_args(t_arg *args, int argc, char **argv)
+int	init_args(t_main *args, int argc, char **argv)
 {
 	args->num = ft_atoi(argv[1]);
 	args->time_to_die = ft_atoi(argv[2]);
@@ -35,7 +35,7 @@ int	init_args(t_arg *args, int argc, char **argv)
 	return (0);
 }
 
-void	init_mutex(t_arg *args)
+void	init_mutex(t_main *args)
 {
 	int				nbr_ph;
 	pthread_mutex_t	*mutex;
@@ -48,7 +48,7 @@ void	init_mutex(t_arg *args)
 	args->forks = mutex;
 }
 
-void	init_philo(t_arg *args)
+void	init_philo(t_main *args)
 {
 	int		i;
 	t_philo	*philos;
@@ -72,10 +72,10 @@ void	init_philo(t_arg *args)
 		philos[i].arg = args;
 		i++;
 	}
-	args->all_philos = philos;
+	args->philosophers = philos;
 }
 
-void	init_threads(t_arg *args)
+void	init_threads(t_main *args)
 {
 	int			i;
 	int			nbr_ph;
@@ -88,15 +88,15 @@ void	init_threads(t_arg *args)
 	while (i < nbr_ph)
 	{	
 		pthread_create(&threads[i], \
-			NULL, do_process, (void *)&args->all_philos[i]);
+			NULL, do_process, (void *)&args->philosophers[i]);
 		i++;
 	}
-	pthread_create(&s_tid, NULL, ft_galina_monitor, (void *)args->all_philos);
+	pthread_create(&s_tid, NULL, ft_galina_monitor, (void *)args->philosophers);
 	pthread_join(s_tid, NULL);
 	args->tids = threads;
 }
 
-void	end_threads(t_arg *args)
+void	end_threads(t_main *args)
 {
 	int	nbr_ph;
 
