@@ -6,20 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:33:25 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 14:55:27 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:14:41 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	free_all(t_arg *args)
-{
-	free(args->tids);
-	free(args->all_philos);
-	free(args->forks);
-}
-
-void	unlock_and_destroy_mutex(t_arg *args)
+void	destroy_mutex(t_arg *args)
 {
 	int	nbr_ph;
 
@@ -31,4 +24,11 @@ void	unlock_and_destroy_mutex(t_arg *args)
 	}
 	pthread_mutex_unlock(&(*args).lock_print);
 	pthread_mutex_destroy(&(*args).lock_print);
+}
+
+void	free_args(t_arg *args)
+{
+	free(args->tids);
+	free(args->all_philos);
+	free(args->forks);
 }

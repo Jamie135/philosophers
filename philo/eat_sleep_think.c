@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:09:52 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:10:21 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:22:21 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,18 @@ void	thinking(t_philo *philo)
 	printf("%ld %d is thinking\n", \
 		ft_time() - philo->start_time, philo->id + 1);
 	pthread_mutex_unlock(&philo->lock_print);
+}
+
+void	dying(t_philo *philo, int i)
+{
+	philo->arg->dead = 1;
+	pthread_mutex_lock(&philo->lock_print);
+	printf("%ld %d died\n", ft_time() - philo->start_time,
+		philo[i].id + 1);
+	i = -1;
+	while (i < philo[i].nbr_philo)
+	{
+		philo[i].stop = 1;
+		i++;
+	}
 }

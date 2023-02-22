@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 23:06:12 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 14:59:52 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:24:45 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,20 @@ void	get_fork(t_philo *philo);
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
+void	dying(t_philo *philo, int i);
 long	ft_time(void);
 void	ft_usleep(int ms);
 int		ft_atoi(const char *str);
 int		ft_is_digit(char *str);
-int		ft_cnt_of_meals(t_philo *philo);
+int		count_meals(t_philo *philo);
 void	*ft_galina_monitor(void *args);
-void	*ft_process(void *args);
-void	ft_init_philosophers(t_arg *args);
-void	ft_init_mutex(t_arg *args);
-void	ft_init_threads(t_arg *args);
-void	ft_end_threads(t_arg *args);
-int		ft_init_args(t_arg *args, int argc, char **argv);
-void	ft_check_args(void);
-void	free_all(t_arg *args);
-void	unlock_and_destroy_mutex(t_arg *args);
+void	*do_process(void *args);
+void	init_philo(t_arg *args);
+void	init_mutex(t_arg *args);
+void	init_threads(t_arg *args);
+void	end_threads(t_arg *args);
+int		init_args(t_arg *args, int argc, char **argv);
+void	free_args(t_arg *args);
+void	destroy_mutex(t_arg *args);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:59:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 15:01:02 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:25:25 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_cnt_of_meals(t_philo *philo)
+int	count_meals(t_philo *philo)
 {
 	int	flag_enough;
 	int	i;
@@ -39,18 +39,31 @@ int	ft_cnt_of_meals(t_philo *philo)
 	return (0);
 }
 
-void	died_philo(t_philo *philo, int i)
+void	*do_process(void *args)
 {
-	philo->arg->dead = 1;
-	pthread_mutex_lock(&philo->lock_print);
-	printf("%ld %d died\n", ft_time() - philo->start_time,
-		philo[i].id + 1);
-	i = -1;
-	while (i < philo[i].nbr_philo)
+	t_philo		*philo;
+
+	philo = (t_philo *)args;
+	philo->time_of_last_meal = ft_time();
+	philo->start_time = ft_time();
+	while (!philo->arg->dead)
 	{
-		philo[i].stop = 1;
-		i++;
+		if (philo->arg->dead || philo->stop || count_meals(philo))
+			return (NULL);
+		get_fork(philo);
+		if (philo->arg->dead || philo->stop || count_meals(philo))
+			return (NULL);
+		eating(philo);
+		if (philo->arg->dead || philo->stop || count_meals(philo))
+			return (NULL);
+		sleeping(philo);
+		if (philo->arg->dead || philo->stop || count_meals(philo))
+			return (NULL);
+		thinking(philo);
+		if (philo->arg->dead || philo->stop || count_meals(philo))
+			return (NULL);
 	}
+	return (NULL);
 }
 
 void	*ft_galina_monitor(void *args)
@@ -69,39 +82,12 @@ void	*ft_galina_monitor(void *args)
 			time_now = ft_time();
 			if (time_now - philo[i].time_of_last_meal > philo[i].limit_of_life)
 			{
-				died_philo(philo, i);
+				dying(philo, i);
 				pthread_mutex_unlock(&philo->lock_print);
 				return (NULL);
 			}
 		}
-		if (ft_cnt_of_meals(philo) || philo->stop)
-			return (NULL);
-	}
-	return (NULL);
-}
-
-void	*ft_process(void *args)
-{
-	t_philo		*philo;
-
-	philo = (t_philo *)args;
-	philo->time_of_last_meal = ft_time();
-	philo->start_time = ft_time();
-	while (!philo->arg->dead)
-	{
-		if (philo->arg->dead || philo->stop || ft_cnt_of_meals(philo))
-			return (NULL);
-		get_fork(philo);
-		if (philo->arg->dead || philo->stop || ft_cnt_of_meals(philo))
-			return (NULL);
-		eating(philo);
-		if (philo->arg->dead || philo->stop || ft_cnt_of_meals(philo))
-			return (NULL);
-		sleeping(philo);
-		if (philo->arg->dead || philo->stop || ft_cnt_of_meals(philo))
-			return (NULL);
-		thinking(philo);
-		if (philo->arg->dead || philo->stop || ft_cnt_of_meals(philo))
+		if (count_meals(philo) || philo->stop)
 			return (NULL);
 	}
 	return (NULL);
