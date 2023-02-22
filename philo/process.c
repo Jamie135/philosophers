@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:59:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 16:06:58 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:14:56 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	count_meals(t_philo *philo)
 {
-	int	flag_enough;
+	int	flag;
 	int	i;
 
 	if (philo->eaten_meals != -1 \
 		&& philo->meals > 0)
 	{
-		flag_enough = 1;
+		flag = 1;
 		i = -1;
 		while (++i < philo->num)
 			if (philo[i].eaten_meals < philo->meals)
-				flag_enough = 0;
-		if (flag_enough == 1)
+				flag = 0;
+		if (flag == 1)
 		{
 			i = -1;
 			while (i < philo[i].num)

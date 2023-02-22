@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 23:39:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 16:06:51 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:13:21 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	init_args(t_main *args, int argc, char **argv)
 
 void	init_mutex(t_main *args)
 {
-	int				nbr_ph;
+	int				n;
 	pthread_mutex_t	*mutex;
 
-	nbr_ph = args->num;
-	mutex = malloc(sizeof(pthread_mutex_t) * nbr_ph);
-	while (nbr_ph--)
-		pthread_mutex_init(&mutex[nbr_ph], NULL);
+	n = args->num;
+	mutex = malloc(sizeof(pthread_mutex_t) * n);
+	while (n--)
+		pthread_mutex_init(&mutex[n], NULL);
 	pthread_mutex_init(&args->lock, NULL);
 	args->forks = mutex;
 }
@@ -78,14 +78,14 @@ void	init_philo(t_main *args)
 void	init_threads(t_main *args)
 {
 	int			i;
-	int			nbr_ph;
+	int			n;
 	pthread_t	*threads;
 	pthread_t	s_tid;
 
 	i = 0;
-	nbr_ph = args->num;
-	threads = malloc(sizeof(pthread_t) * nbr_ph);
-	while (i < nbr_ph)
+	n = args->num;
+	threads = malloc(sizeof(pthread_t) * n);
+	while (i < n)
 	{	
 		pthread_create(&threads[i], \
 			NULL, do_process, (void *)&args->philosophers[i]);
@@ -98,16 +98,16 @@ void	init_threads(t_main *args)
 
 void	end_threads(t_main *args)
 {
-	int	nbr_ph;
+	int	n;
 
-	nbr_ph = args->num;
-	if (nbr_ph == 1)
+	n = args->num;
+	if (n == 1)
 	{
 		pthread_mutex_unlock(&args->forks[0]);
 	}
-	while (nbr_ph)
+	while (n)
 	{
-		nbr_ph--;
-		pthread_join(args->tids[nbr_ph], NULL);
+		n--;
+		pthread_join(args->tids[n], NULL);
 	}
 }
