@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:21:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:21:16 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:49:32 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,32 @@ int	parsing(t_data *data, int ac, char **av)
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->meal_mutex, NULL);
 	pthread_mutex_init(&data->death_mutex, NULL);
+	return (1);
+}
+
+int	init_philo(t_data *data)
+{
+	int				i;
+	pthread_mutex_t	*forks;
+
+	i = 0;
+	forks = malloc(sizeof(pthread_mutex_t) * data->nb_of_philo);
+	data->philo_lst = malloc(sizeof(t_philo) * data->nb_of_philo);
+	if (!forks || !data->philo_lst)
+	{
+		free(forks);
+		return (-1);
+	}
+	while (i < data->nb_of_philo)
+	{
+		data->philo_lst[i].id = i + 1;
+		data->philo_lst[i].nb_meal = data->nb_time_must_eat;
+		data->philo_lst[i].data = data;
+		data->philo_lst[i].forks = forks;
+		data->philo_lst[i].last_meal = get_time();
+		pthread_mutex_init(&data->philo_lst[i].forks[i], NULL);
+		i++;
+	}
+	data->nb_time_must_eat = data->nb_of_philo;
 	return (1);
 }

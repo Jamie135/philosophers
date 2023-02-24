@@ -6,14 +6,13 @@
 #    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 14:21:26 by pbureera          #+#    #+#              #
-#    Updated: 2023/02/24 14:42:48 by pbureera         ###   ########.fr        #
+#    Updated: 2023/02/24 14:50:28 by pbureera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRCS = ./philo.c \
-		./init_philo.c \
 		./routine.c \
 		./routine_norm.c \
 		./parsing.c \
