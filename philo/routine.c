@@ -44,6 +44,7 @@ void	sleep_and_think(t_philo *philo)
 	+ philo->data->time_to_sleep)) / 2) * 1000);
 }
 
+/* Verifier si death est vrai ou si l'attente depasse time_to_die, on arrete la routine dans ce cas*/
 int	is_alive(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->death_mutex);

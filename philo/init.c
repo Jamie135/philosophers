@@ -65,13 +65,13 @@ int	check_args(int ac, char **av)
 		return (0);
 	if (ac == 6 && ft_atoi(av[5]) < 1)
 	{
-		printf("Error: <number of time each philosopher \
-		must eat> must be > 0.\n");
+		printf("Error: not enough meals\n");
 		return (0);
 	}
 	return (1);
 }
 
+/*Initialiser les arguments et les mutex pour print, meal et death*/
 int	init_args(t_data *data, int ac, char **av)
 {
 	if (check_args(ac, av) == 0)
@@ -91,6 +91,7 @@ int	init_args(t_data *data, int ac, char **av)
 	return (1);
 }
 
+/*Initialiser les datas et les mutex pour chaque philosophes*/
 int	init_philo(t_data *data)
 {
 	int				i;

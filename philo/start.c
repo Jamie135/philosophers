@@ -12,6 +12,7 @@
 
 #include "philo.h"
 
+/*Initialiser les threads qui vont executer les routines des philosophes pairs*/
 int	thread_even(t_philo *philo_lst, int nb_philo)
 {
 	int	i;
@@ -27,6 +28,7 @@ int	thread_even(t_philo *philo_lst, int nb_philo)
 	return (0);
 }
 
+/*Initialiser les threads qui vont executer les routines des philosophes impairs*/
 int	thread_odd(t_philo *philo_lst, int nb_philo)
 {
 	int	i;
@@ -42,6 +44,7 @@ int	thread_odd(t_philo *philo_lst, int nb_philo)
 	return (0);
 }
 
+/*Initialiser les threads pour les philosophes pairs puis impairs*/
 int	start(t_data *data)
 {
 	data->start_time = get_time();

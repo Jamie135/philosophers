@@ -18,7 +18,6 @@ SRCS = ./philo.c \
 		./init.c \
 		./start.c \
 		./time_functions.c \
-		./print.c \
 		./forks.c \
 		./stop.c \
 		./utils.c

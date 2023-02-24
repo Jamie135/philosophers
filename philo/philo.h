@@ -66,9 +66,6 @@ void	one_philo_eat(t_philo *philo);
 void	eat_while_philo_need(t_philo *philo);
 int		is_alive(t_philo *philo);
 
-/*--------Print---------*/
-long	int	display(t_philo *philo, char *str);
-
 /*--------Forks---------*/
 void	lock_forks(t_philo *philo, t_data *data);
 void	unlock_forks(t_philo *philo, t_data *data);
@@ -84,9 +81,10 @@ void	check_philo_death(t_data *data);
 int		endofmeal(t_data *data);
 void	check_philo_death_n_meals(t_data *data);
 
-/*--------libft.c---------*/
+/*--------utils.c---------*/
 size_t	ft_strlen(char const *str);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+long	int	display(t_philo *philo, char *str);
 
 #endif
