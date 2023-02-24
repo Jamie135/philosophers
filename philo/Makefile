@@ -6,7 +6,7 @@
 #    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 14:21:26 by pbureera          #+#    #+#              #
-#    Updated: 2023/02/24 15:09:36 by pbureera         ###   ########.fr        #
+#    Updated: 2023/02/24 15:14:24 by pbureera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ SRCS = ./philo.c \
 		./routine.c \
 		./routine_norm.c \
 		./init.c \
-		./start_simulation.c \
+		./start.c \
 		./time_functions.c \
 		./print.c \
 		./forks.c \
-		./end_simulation.c \
+		./stop.c \
 		./utils.c
 
 GCC = cc
