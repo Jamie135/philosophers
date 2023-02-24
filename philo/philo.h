@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:20:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:20:27 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:42:03 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ void	check_philo_death(t_data *data);
 int		endofmeal(t_data *data);
 void	check_philo_death_n_meals(t_data *data);
 
-/*--------Utils---------*/
-int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
+/*--------libft.c---------*/
 size_t	ft_strlen(char const *str);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 
 #endif

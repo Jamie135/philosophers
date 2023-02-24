@@ -6,7 +6,7 @@
 #    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 14:21:26 by pbureera          #+#    #+#              #
-#    Updated: 2023/02/24 14:25:21 by pbureera         ###   ########.fr        #
+#    Updated: 2023/02/24 14:42:48 by pbureera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,7 @@ SRCS = ./philo.c \
 		./print.c \
 		./forks.c \
 		./end_simulation.c \
-		./ft_strlen.c \
-		./ft_atoi.c \
-		./ft_isdigit.c \
+		./libft.c
 
 GCC = cc
 FLAGS = -g -pthread -Wextra -Wall -Werror #-fsanitize=thread
