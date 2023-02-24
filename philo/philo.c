@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:20:45 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:20:46 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:58:27 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	main(int ac, char **av)
 		end(&data);
 	}
 	else
-		printf("Error: Wrong amount of arguments.");
+		printf("Error: There must be 4 or 5 arguments");
 	return (0);
 }
