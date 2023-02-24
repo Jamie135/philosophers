@@ -89,12 +89,10 @@ void	check_time_of_death(struct s_philo *philo)
 void	check_philo_death_n_meals(t_data *data)
 {
 	int			i;
-	long int	actual_time;
 
 	i = 0;
 	while (1)
 	{
-		actual_time = get_time();
 		pthread_mutex_lock(&data->meal_mutex);
 		if (data->nb_time_must_eat == 0)
 		{
