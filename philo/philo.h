@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:20:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:50:00 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:08:40 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ typedef struct s_philo
 	pthread_mutex_t		*forks;
 }				t_philo;
 
-/*--------parsing.c---------*/
-int		check_if_digit(int ac, char **av);
-int		check_if_int_are_valid(int ac, char **av);
-int		check_errors(int ac, char **av);
-int		parsing(t_data *data, int ac, char **av);
+/*--------init.c---------*/
+int		check_digits(int ac, char **av);
+int		valid_digits(int ac, char **av);
+int		check_args(int ac, char **av);
+int		init_args(t_data *data, int ac, char **av);
 int		init_philo(t_data *data);
 
 /*--------Start_simulation---------*/

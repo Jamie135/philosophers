@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:20:45 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:58:27 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:09:14 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac == 5 || ac == 6)
 	{
-		if (parsing(&data, ac, av) == 0)
+		if (init_args(&data, ac, av) == 0)
 			return (-1);
 		if (init_philo(&data) == -1)
 			return (-1);

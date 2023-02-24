@@ -6,13 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:21:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:49:32 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:08:19 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_if_digit(int ac, char **av)
+int	check_digits(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -25,7 +25,7 @@ int	check_if_digit(int ac, char **av)
 		{
 			if (!ft_isdigit(av[i][j]))
 			{
-				printf("Error: use only digit caracters.\n");
+				printf("Error: arguments must be digit caracters.\n");
 				return (0);
 			}
 			j++;
@@ -35,7 +35,7 @@ int	check_if_digit(int ac, char **av)
 	return (1);
 }
 
-int	check_if_int_are_valid(int ac, char **av)
+int	valid_digits(int ac, char **av)
 {
 	int	i;
 
@@ -57,11 +57,11 @@ int	check_if_int_are_valid(int ac, char **av)
 	return (1);
 }
 
-int	check_errors(int ac, char **av)
+int	check_args(int ac, char **av)
 {
-	if (check_if_digit(ac, av) == 0)
+	if (check_digits(ac, av) == 0)
 		return (0);
-	if (check_if_int_are_valid(ac, av) == 0)
+	if (valid_digits(ac, av) == 0)
 		return (0);
 	if (ac == 6 && ft_atoi(av[5]) < 1)
 	{
@@ -72,9 +72,9 @@ int	check_errors(int ac, char **av)
 	return (1);
 }
 
-int	parsing(t_data *data, int ac, char **av)
+int	init_args(t_data *data, int ac, char **av)
 {
-	if (check_errors(ac, av) == 0)
+	if (check_args(ac, av) == 0)
 		return (0);
 	data->nb_of_philo = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]);
