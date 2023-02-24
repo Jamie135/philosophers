@@ -3,49 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   forks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 14:55:30 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 16:07:08 by pbureera         ###   ########.fr       */
+/*   Created: 2022/02/04 14:28:17 by esafar            #+#    #+#             */
+/*   Updated: 2022/02/07 17:50:55 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	get_fork_1(t_philo *philo)
+void	lock_forks(t_philo *philo, t_data *data)
 {
-	pthread_mutex_lock(philo->right_fork);
-	pthread_mutex_lock(philo->left_fork);
-	pthread_mutex_lock(&philo->lock);
-	if (philo->stop != 1)
+	if (philo->id % 2 == 0)
 	{
-		printf("%ld %d has taken a fork\n", \
-			ft_time() - philo->start, philo->id + 1);
-		printf("%ld %d has taken a fork\n", \
-			ft_time() - philo->start, philo->id + 1);
+		pthread_mutex_lock(&philo->forks[philo->id % data->nb_of_philo]);
+		pthread_mutex_lock(&philo->forks[philo->id - 1]);
 	}
-	pthread_mutex_unlock(&philo->lock);
-}
-
-void	get_fork_2(t_philo *philo)
-{
-	pthread_mutex_lock(philo->left_fork);
-	pthread_mutex_lock(philo->right_fork);
-	pthread_mutex_lock(&philo->lock);
-	if (philo->stop != 1)
-	{
-		printf("%ld %d has taken a fork\n", \
-			ft_time() - philo->start, philo->id + 1);
-		printf("%ld %d has taken a fork\n", \
-			ft_time() - philo->start, philo->id + 1);
-	}
-	pthread_mutex_unlock(&philo->lock);
-}
-
-void	get_fork(t_philo *philo)
-{
-	if ((philo->id) % 2 == 0 && philo->id + 1 != philo->num)
-		get_fork_1(philo);
 	else
-		get_fork_2(philo);
+	{
+		pthread_mutex_lock(&philo->forks[philo->id - 1]);
+		pthread_mutex_lock(&philo->forks[philo->id % data->nb_of_philo]);
+	}
+}
+
+void	unlock_forks(t_philo *philo, t_data *data)
+{
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_unlock(&philo->forks[philo->id % data->nb_of_philo]);
+		pthread_mutex_unlock(&philo->forks[philo->id - 1]);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->forks[philo->id - 1]);
+		pthread_mutex_unlock(&philo->forks[philo->id % data->nb_of_philo]);
+	}
 }

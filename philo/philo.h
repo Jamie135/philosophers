@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: c2h6 <c2h6@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 23:06:12 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/22 16:09:59 by pbureera         ###   ########.fr       */
+/*   Created: 2021/12/27 18:44:38 by esafar            #+#    #+#             */
+/*   Updated: 2022/07/27 10:32:06 by c2h6             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,80 +14,83 @@
 # define PHILO_H
 
 # include <unistd.h>
-# include <string.h>
-# include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <limits.h>
 
-struct	s_main;
+# define malloc(...) NULL //in order to test malloc fails
+
+typedef struct s_data
+{
+	long int		start_time;
+	int				nb_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				nb_time_must_eat;
+	bool			is_dead;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	meal_mutex;
+	pthread_mutex_t	death_mutex;
+	struct s_philo	*philo_lst;
+}				t_data;
 
 typedef struct s_philo
 {
-	int				num;
-	int				id;
-	int				eaten_meals;
-	int				meals;
-	time_t			last_meal;
-	int				time_to_eat;
-	int				time_to_die;
-	int				time_to_sleep;
-	time_t			start;
-	int				stop;
-	time_t			lifespan;
-	pthread_mutex_t	lock;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	struct s_main	*arg;
-}					t_philo;
+	int					id;
+	int					nb_meal;
+	long int			last_meal;
+	pthread_t			thread;
+	t_data				*data;
+	pthread_mutex_t		*forks;
+}				t_philo;
 
-typedef struct s_main
-{
-	int				num;
-	int				id;
-	int				meals;
-	int				time_to_eat;
-	int				time_to_die;
-	int				time_to_sleep;
-	time_t			start;
-	int				dead;
-	pthread_mutex_t	*forks;
-	pthread_t		*tids;
-	pthread_mutex_t	lock;
-	t_philo			*philosophers;
-}					t_main;
+/*--------Parsing---------*/
+int		parsing(t_data *data, int ac, char **av);
+int		check_errors(int ac, char **av);
+int		check_if_digit(int ac, char **av);
+int		check_if_int_are_valid(int ac, char **av);
 
-/* init.c */
-int		init_args(t_main *args, int argc, char **argv);
-void	init_mutex(t_main *args);
-void	init_philo(t_main *args);
-void	init_threads(t_main *args);
-void	end_threads(t_main *args);
+/*--------Initialize_philosophers---------*/
+int		init_philo(t_data *data);
 
-/* process */
-int		count_meals(t_philo *philo);
-void	*do_process(void *args);
-void	*ft_galina_monitor(void *args);
+/*--------Start_simulation---------*/
+int		start(t_data *data);
+int		start_even_group(t_philo *philo_lst, int nb_philo);
+int		start_odd_group(t_philo *philo_lst, int nb_philo);
 
-/* forks.c */
-void	get_fork_1(t_philo *philo);
-void	get_fork_2(t_philo *philo);
-void	get_fork(t_philo *philo);
+/*--------Routine---------*/
+void	*routine(void *arg);
+void	eat(t_philo *philo);
+void	sleep_and_think(t_philo *philo);
+void	one_philo_eat(t_philo *philo);
+void	eat_while_philo_need(t_philo *philo);
+int		is_alive(t_philo *philo);
 
-/* status.c */
-void	eating(t_philo *philo);
-void	sleeping(t_philo *philo);
-void	thinking(t_philo *philo);
-void	dying(t_philo *philo, int i);
+/*--------Print---------*/
+long	int	display(t_philo *philo, char *str);
 
-/* utils.c */
-long	ft_time(void);
-void	ft_usleep(int ms);
+/*--------Forks---------*/
+void	lock_forks(t_philo *philo, t_data *data);
+void	unlock_forks(t_philo *philo, t_data *data);
+
+/*--------Time_functions---------*/
+long	int	get_time(void);
+void	handmade_usleep(long int timetosleep);
+
+/*--------End_simulation---------*/
+void	end(t_data *data);
+void	kill_philo(t_data *data, long int actual_time, int i);
+void	check_philo_death(t_data *data);
+int		endofmeal(t_data *data);
+void	check_philo_death_n_meals(t_data *data);
+
+/*--------Utils---------*/
 int		ft_atoi(const char *str);
-int		ft_is_digit(char *str);
-
-/* free.c */
-void	free_args(t_main *args);
-void	destroy_mutex(t_main *args);
+int		ft_isdigit(int c);
+size_t	ft_strlen(char const *str);
 
 #endif
