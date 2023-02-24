@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:20:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 15:08:40 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:15:27 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		check_args(int ac, char **av);
 int		init_args(t_data *data, int ac, char **av);
 int		init_philo(t_data *data);
 
-/*--------Start_simulation---------*/
+/*--------start.c---------*/
 int		start(t_data *data);
 int		start_even_group(t_philo *philo_lst, int nb_philo);
 int		start_odd_group(t_philo *philo_lst, int nb_philo);
