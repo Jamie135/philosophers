@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c2h6 <c2h6@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 14:27:27 by esafar            #+#    #+#             */
-/*   Updated: 2022/07/27 10:01:14 by c2h6             ###   ########.fr       */
+/*   Created: 2023/02/24 14:21:33 by pbureera          #+#    #+#             */
+/*   Updated: 2023/02/24 14:35:20 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,14 @@ int	init_philo(t_data *data)
 	int				i;
 	pthread_mutex_t	*forks;
 
+	i = 0;
 	forks = malloc(sizeof(pthread_mutex_t) * data->nb_of_philo);
-	if (!forks)
-	{
-		printf("TEST MALLOC ERROR\n");
-		return (-1);
-	}
 	data->philo_lst = malloc(sizeof(t_philo) * data->nb_of_philo);
-	if (!data->philo_lst)
+	if (!forks || !data->philo_lst)
 	{
 		free(forks);
 		return (-1);
 	}
-	i = 0;
 	while (i < data->nb_of_philo)
 	{
 		data->philo_lst[i].id = i + 1;

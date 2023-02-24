@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c2h6 <c2h6@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/27 18:44:38 by esafar            #+#    #+#             */
-/*   Updated: 2022/07/27 10:32:06 by c2h6             ###   ########.fr       */
+/*   Created: 2023/02/24 14:20:23 by pbureera          #+#    #+#             */
+/*   Updated: 2023/02/24 14:20:27 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
-
-# define malloc(...) NULL //in order to test malloc fails
 
 typedef struct s_data
 {
