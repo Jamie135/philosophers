@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <limits.h>
 
-typedef struct s_data
+typedef struct s_main
 {
 	long int		start;
 	int				num;
@@ -29,36 +29,36 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals;
-	bool			is_dead;
+	bool			dead;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	m_meal;
 	pthread_mutex_t	m_death;
 	struct s_philo	*philosopher;
-}				t_data;
+}				t_main;
 
 typedef struct s_philo
 {
 	int					id;
-	int					nb_meal;
+	int					meals_to_eat;
 	long int			last_meal;
 	pthread_t			thread;
-	t_data				*data;
+	t_main				*args;
 	pthread_mutex_t		*forks;
 }				t_philo;
 
 /* init.c */
-int		check_digits(int ac, char **av);
-int		valid_digits(int ac, char **av);
-int		check_args(int ac, char **av);
-int		init_args(t_data *data, int ac, char **av);
-int		init_philo(t_data *data);
+int		check_digits(int argc, char **argv);
+int		valid_digits(int argc, char **argv);
+int		check_args(int argc, char **argv);
+int		init_args(t_main *args, int argc, char **argv);
+int		init_philo(t_main *args);
 
 /* threads.c */
 void	*get_action(void *arg);
 int		thread_even(t_philo *philosopher, int nb_philo);
 int		thread_odd(t_philo *philosopherz, int nb_philo);
-int		init_thread(t_data *data);
-void	end_thread(t_data *data);
+int		init_thread(t_main *args);
+void	end_thread(t_main *args);
 
 /*--------Routine---------*/
 void	eat(t_philo *philo);
@@ -67,14 +67,14 @@ void	full_eat(t_philo *philo);
 void	sleep_and_think(t_philo *philo);
 
 /*--------Forks---------*/
-void	pick_forks(t_philo *philo, t_data *data);
-void	release_forks(t_philo *philo, t_data *data);
+void	pick_forks(t_philo *philo, t_main *args);
+void	release_forks(t_philo *philo, t_main *args);
 
 /*--------End_simulation---------*/
 int		is_alive(t_philo *philo);
-void	kill_philo(t_data *data, long int actual_time, int i);
-void	is_death(t_data *data);
-void	dead_or_alive(t_data *data);
+void	kill_philo(t_main *args, long int actual_time, int i);
+void	is_death(t_main *args);
+void	dead_or_alive(t_main *args);
 
 /*--------Time_functions---------*/
 long	int	ft_time(void);

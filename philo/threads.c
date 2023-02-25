@@ -17,12 +17,12 @@ void	*get_action(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->data->num == 1)
+	if (philo->args->num == 1)
 	{
 		one_eat(philo);
 		return (0);
 	}
-	if (philo->nb_meal == 0)
+	if (philo->meals_to_eat == 0)
 	{
 		while (is_alive(philo) == 1)
 		{		
@@ -71,41 +71,41 @@ int	thread_odd(t_philo *philosopher, int nb_philo)
 }
 
 /*Initialiser les threads pour les philosophes pairs puis impairs*/
-int	init_thread(t_data *data)
+int	init_thread(t_main *args)
 {
-	data->start = ft_time();
-	if (thread_even(data->philosopher, data->num))
+	args->start = ft_time();
+	if (thread_even(args->philosopher, args->num))
 		return (-1);
 	usleep(100);
-	if (thread_odd(data->philosopher, data->num))
+	if (thread_odd(args->philosopher, args->num))
 		return (-1);
-	if (data->num != 1 && data->meals > 0)
-		dead_or_alive(data);
+	if (args->num != 1 && args->meals > 0)
+		dead_or_alive(args);
 	else
-		is_death(data);
+		is_death(args);
 	return (1);
 }
 
-void	end_thread(t_data *data)
+void	end_thread(t_main *args)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->num)
+	while (i < args->num)
 	{
-		pthread_join(data->philosopher[i].thread, NULL);
+		pthread_join(args->philosopher[i].thread, NULL);
 		++i;
 	}
 	i = 0;
-	while (i < data->num)
+	while (i < args->num)
 	{
-		pthread_mutex_destroy(&data->philosopher[i].forks[i]);
+		pthread_mutex_destroy(&args->philosopher[i].forks[i]);
 		++i;
 	}
-	pthread_mutex_destroy(&data->m_print);
-	free(data->philosopher->forks);
-	free(data->philosopher);
-	pthread_mutex_destroy(&data->m_meal);
-	pthread_mutex_destroy(&data->m_death);
+	pthread_mutex_destroy(&args->m_print);
+	free(args->philosopher->forks);
+	free(args->philosopher);
+	pthread_mutex_destroy(&args->m_meal);
+	pthread_mutex_destroy(&args->m_death);
 	return ;
 }

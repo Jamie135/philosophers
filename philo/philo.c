@@ -12,19 +12,19 @@
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_main	args;
 
-	if (ac == 5 || ac == 6)
+	if (argc == 5 || argc == 6)
 	{
-		if (init_args(&data, ac, av) == 0)
+		if (init_args(&args, argc, argv) == 0)
 			return (-1);
-		if (init_philo(&data) == -1)
+		if (init_philo(&args) == -1)
 			return (-1);
-		if (init_thread(&data) == -1)
+		if (init_thread(&args) == -1)
 			return (-1);
-		end_thread(&data);
+		end_thread(&args);
 	}
 	else
 		printf("Error: There must be 4 or 5 arguments");

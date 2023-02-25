@@ -12,18 +12,18 @@
 
 #include "philo.h"
 
-int	check_digits(int ac, char **av)
+int	check_digits(int argc, char **argv)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	while (i < ac)
+	while (i < argc)
 	{
 		j = 0;
-		while (av[i][j])
+		while (argv[i][j])
 		{
-			if (!ft_isdigit(av[i][j]))
+			if (!ft_isdigit(argv[i][j]))
 			{
 				printf("Error: arguments must be digit caracters.\n");
 				return (0);
@@ -35,19 +35,19 @@ int	check_digits(int ac, char **av)
 	return (1);
 }
 
-int	valid_digits(int ac, char **av)
+int	valid_digits(int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
-	while (i < ac)
+	while (i < argc)
 	{
-		if (ft_atoi(av[i]) > INT_MAX || ft_strlen(av[i]) > 11)
+		if (ft_atoi(argv[i]) > INT_MAX || ft_strlen(argv[i]) > 11)
 		{
 			printf("Error: int overflow.\n");
 			return (0);
 		}
-		if (ft_atoi(av[i]) < 1)
+		if (ft_atoi(argv[i]) < 1)
 		{
 			printf("Error: invalid amount of philosophers.\n");
 			return (0);
@@ -57,13 +57,13 @@ int	valid_digits(int ac, char **av)
 	return (1);
 }
 
-int	check_args(int ac, char **av)
+int	check_args(int argc, char **argv)
 {
-	if (check_digits(ac, av) == 0)
+	if (check_digits(argc, argv) == 0)
 		return (0);
-	if (valid_digits(ac, av) == 0)
+	if (valid_digits(argc, argv) == 0)
 		return (0);
-	if (ac == 6 && ft_atoi(av[5]) < 1)
+	if (argc == 6 && ft_atoi(argv[5]) < 1)
 	{
 		printf("Error: not enough meals\n");
 		return (0);
@@ -72,49 +72,49 @@ int	check_args(int ac, char **av)
 }
 
 /*Initialiser les arguments et les mutex pour print, meal et death*/
-int	init_args(t_data *data, int ac, char **av)
+int	init_args(t_main *args, int argc, char **argv)
 {
-	if (check_args(ac, av) == 0)
+	if (check_args(argc, argv) == 0)
 		return (0);
-	data->num = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]);
-	data->time_to_eat = ft_atoi(av[3]);
-	data->time_to_sleep = ft_atoi(av[4]);
-	if (ac == 6)
-		data->meals = ft_atoi(av[5]);
-	else if (ac == 5)
-		data->meals = 0;
-	data->is_dead = false;
-	pthread_mutex_init(&data->m_print, NULL);
-	pthread_mutex_init(&data->m_meal, NULL);
-	pthread_mutex_init(&data->m_death, NULL);
+	args->num = ft_atoi(argv[1]);
+	args->time_to_die = ft_atoi(argv[2]);
+	args->time_to_eat = ft_atoi(argv[3]);
+	args->time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		args->meals = ft_atoi(argv[5]);
+	else if (argc == 5)
+		args->meals = 0;
+	args->dead = false;
+	pthread_mutex_init(&args->m_print, NULL);
+	pthread_mutex_init(&args->m_meal, NULL);
+	pthread_mutex_init(&args->m_death, NULL);
 	return (1);
 }
 
 /*Initialiser les datas et les mutex pour chaque philosophes. La variable nb_time_must_eat devient nb_philo_that_still_have_to_eat*/
-int	init_philo(t_data *data)
+int	init_philo(t_main *args)
 {
 	int				i;
 	pthread_mutex_t	*forks;
 
 	i = 0;
-	forks = malloc(sizeof(pthread_mutex_t) * data->num);
-	data->philosopher = malloc(sizeof(t_philo) * data->num);
-	if (!forks || !data->philosopher)
+	forks = malloc(sizeof(pthread_mutex_t) * args->num);
+	args->philosopher = malloc(sizeof(t_philo) * args->num);
+	if (!forks || !args->philosopher)
 	{
 		free(forks);
 		return (-1);
 	}
-	while (i < data->num)
+	while (i < args->num)
 	{
-		data->philosopher[i].id = i + 1;
-		data->philosopher[i].nb_meal = data->meals;
-		data->philosopher[i].data = data;
-		data->philosopher[i].forks = forks;
-		data->philosopher[i].last_meal = ft_time();
-		pthread_mutex_init(&data->philosopher[i].forks[i], NULL);
+		args->philosopher[i].id = i + 1;
+		args->philosopher[i].meals_to_eat = args->meals;
+		args->philosopher[i].args = args;
+		args->philosopher[i].forks = forks;
+		args->philosopher[i].last_meal = ft_time();
+		pthread_mutex_init(&args->philosopher[i].forks[i], NULL);
 		i++;
 	}
-	data->meals = data->num;
+	args->meals = args->num;
 	return (1);
 }
