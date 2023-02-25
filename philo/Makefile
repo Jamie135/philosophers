@@ -24,7 +24,7 @@ SRCS =	./philo.c \
 		./actions.c \
 		./eat.c \
 		./init.c \
-		./thread.c \
+		./threads.c \
 		./time.c \
 		./forks.c \
 		./death.c \

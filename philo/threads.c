@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	*routine(void *arg)
+void	*get_action(void *arg)
 {
 	t_philo	*philo;
 
@@ -47,7 +47,7 @@ int	thread_even(t_philo *philo_lst, int nb_philo)
 	while (i < nb_philo)
 	{
 		if (pthread_create(&philo_lst[i].thread, NULL, \
-		&routine, &philo_lst[i]) != 0)
+		&get_action, &philo_lst[i]) != 0)
 			return (-1);
 		i += 2;
 	}
@@ -63,7 +63,7 @@ int	thread_odd(t_philo *philo_lst, int nb_philo)
 	while (i < nb_philo)
 	{
 		if (pthread_create(&philo_lst[i].thread, NULL, \
-		&routine, &philo_lst[i]) != 0)
+		&get_action, &philo_lst[i]) != 0)
 			return (-1);
 		i += 2;
 	}
@@ -71,7 +71,7 @@ int	thread_odd(t_philo *philo_lst, int nb_philo)
 }
 
 /*Initialiser les threads pour les philosophes pairs puis impairs*/
-int	start(t_data *data)
+int	init_thread(t_data *data)
 {
 	data->start_time = get_time();
 	if (thread_even(data->philo_lst, data->nb_of_philo))
@@ -86,7 +86,7 @@ int	start(t_data *data)
 	return (1);
 }
 
-void	end(t_data *data)
+void	end_thread(t_data *data)
 {
 	int	i;
 

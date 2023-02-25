@@ -22,9 +22,9 @@ int	main(int ac, char **av)
 			return (-1);
 		if (init_philo(&data) == -1)
 			return (-1);
-		if (start(&data) == -1)
+		if (init_thread(&data) == -1)
 			return (-1);
-		end(&data);
+		end_thread(&data);
 	}
 	else
 		printf("Error: There must be 4 or 5 arguments");

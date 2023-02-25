@@ -46,20 +46,21 @@ typedef struct s_philo
 	pthread_mutex_t		*forks;
 }				t_philo;
 
-/*--------init.c---------*/
+/* init.c */
 int		check_digits(int ac, char **av);
 int		valid_digits(int ac, char **av);
 int		check_args(int ac, char **av);
 int		init_args(t_data *data, int ac, char **av);
 int		init_philo(t_data *data);
 
-/*--------start.c---------*/
-int		start(t_data *data);
+/* threads.c */
+void	*get_action(void *arg);
 int		thread_even(t_philo *philo_lst, int nb_philo);
 int		thread_odd(t_philo *philo_lst, int nb_philo);
+int		init_thread(t_data *data);
+void	end_thread(t_data *data);
 
 /*--------Routine---------*/
-void	*routine(void *arg);
 void	eat(t_philo *philo);
 void	sleep_and_think(t_philo *philo);
 void	one_philo_eat(t_philo *philo);
@@ -71,7 +72,6 @@ void	lock_forks(t_philo *philo, t_data *data);
 void	unlock_forks(t_philo *philo, t_data *data);
 
 /*--------End_simulation---------*/
-void	end(t_data *data);
 void	kill_philo(t_data *data, long int actual_time, int i);
 void	check_philo_death(t_data *data);
 int		endofmeal(t_data *data);
