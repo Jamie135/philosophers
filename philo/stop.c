@@ -43,7 +43,7 @@ void	kill_philo(t_data *data, long int actual_time, int i)
 	pthread_mutex_unlock(&data->death_mutex);
 	pthread_mutex_lock(&data->print_mutex);
 	if (data->nb_of_philo > 1)
-		printf("%ld ms : philo %d died\n", (actual_time - \
+		printf("%ldms %d died\n", (actual_time - \
 	data->start_time), data->philo_lst[i].id);
 	pthread_mutex_unlock(&data->print_mutex);
 }

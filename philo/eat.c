@@ -29,6 +29,6 @@ void	one_philo_eat(t_philo *philo)
 {
 	display(philo, "has taken a fork");
 	usleep(philo->data->time_to_die * 1000);
-	printf("%ld ms : philo %d died\n", (get_time() - \
+	printf("%ldms %d died\n", (get_time() - \
 	philo->data->start_time), philo->id);
 }
