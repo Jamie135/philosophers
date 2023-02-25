@@ -48,6 +48,7 @@ void	kill_philo(t_data *data, long int actual_time, int i)
 	pthread_mutex_unlock(&data->print_mutex);
 }
 
+/* Verifier death pour nb_philo = 1*/
 void	check_philo_death(t_data *data)
 {
 	int			i;
