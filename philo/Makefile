@@ -14,7 +14,7 @@ NAME = philo
 
 SRCS = ./philo.c \
 		./routine.c \
-		./routine_norm.c \
+		./eat.c \
 		./init.c \
 		./start.c \
 		./time_functions.c \

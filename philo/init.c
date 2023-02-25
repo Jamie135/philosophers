@@ -91,7 +91,7 @@ int	init_args(t_data *data, int ac, char **av)
 	return (1);
 }
 
-/*Initialiser les datas et les mutex pour chaque philosophes*/
+/*Initialiser les datas et les mutex pour chaque philosophes. La variable nb_time_must_eat devient nb_philo_that_still_have_to_eat*/
 int	init_philo(t_data *data)
 {
 	int				i;
