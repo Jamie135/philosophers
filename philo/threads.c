@@ -80,9 +80,9 @@ int	init_thread(t_data *data)
 	if (thread_odd(data->philo_lst, data->nb_of_philo))
 		return (-1);
 	if (data->nb_of_philo != 1 && data->nb_time_must_eat > 0)
-		check_philo_death_n_meals(data);
+		dead_or_alive(data);
 	else
-		check_philo_death(data);
+		is_death(data);
 	return (1);
 }
 

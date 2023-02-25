@@ -43,7 +43,7 @@ void	kill_philo(t_data *data, long int actual_time, int i)
 }
 
 /* Verifier death pour nb_philo = 1*/
-void	check_philo_death(t_data *data)
+void	is_death(t_data *data)
 {
 	int			i;
 	long int	actual_time;
@@ -68,7 +68,7 @@ void	check_philo_death(t_data *data)
 	}
 }
 
-void	check_time_of_death(struct s_philo *philo)
+void	compare_times(struct s_philo *philo)
 {
 	long int	actual_time;
 
@@ -81,7 +81,7 @@ void	check_time_of_death(struct s_philo *philo)
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 }
 
-void	check_philo_death_n_meals(t_data *data)
+void	dead_or_alive(t_data *data)
 {
 	int			i;
 
@@ -95,7 +95,7 @@ void	check_philo_death_n_meals(t_data *data)
 			return ;
 		}
 		pthread_mutex_unlock(&data->meal_mutex);
-		check_time_of_death(&(data->philo_lst[i]));
+		compare_times(&(data->philo_lst[i]));
 		if (data->is_dead == true)
 			return ;
 		i++;

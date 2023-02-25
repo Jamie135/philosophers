@@ -73,9 +73,8 @@ void	release_forks(t_philo *philo, t_data *data);
 /*--------End_simulation---------*/
 int		is_alive(t_philo *philo);
 void	kill_philo(t_data *data, long int actual_time, int i);
-void	check_philo_death(t_data *data);
-int		endofmeal(t_data *data);
-void	check_philo_death_n_meals(t_data *data);
+void	is_death(t_data *data);
+void	dead_or_alive(t_data *data);
 
 /*--------Time_functions---------*/
 long	int	ft_time(void);
