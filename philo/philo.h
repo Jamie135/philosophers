@@ -67,8 +67,8 @@ void	full_eat(t_philo *philo);
 void	sleep_and_think(t_philo *philo);
 
 /*--------Forks---------*/
-void	lock_forks(t_philo *philo, t_data *data);
-void	unlock_forks(t_philo *philo, t_data *data);
+void	pick_forks(t_philo *philo, t_data *data);
+void	release_forks(t_philo *philo, t_data *data);
 
 /*--------End_simulation---------*/
 int		is_alive(t_philo *philo);
@@ -78,9 +78,9 @@ int		endofmeal(t_data *data);
 void	check_philo_death_n_meals(t_data *data);
 
 /*--------Time_functions---------*/
-long	int	get_time(void);
-void	handmade_usleep(long int timetosleep);
-long	int	display(t_philo *philo, char *str);
+long	int	ft_time(void);
+void	ft_usleep(long int timetosleep);
+long	int	ft_log(t_philo *philo, char *str);
 
 /*--------utils.c---------*/
 size_t	ft_strlen(char const *str);

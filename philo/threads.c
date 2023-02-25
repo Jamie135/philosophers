@@ -73,7 +73,7 @@ int	thread_odd(t_philo *philo_lst, int nb_philo)
 /*Initialiser les threads pour les philosophes pairs puis impairs*/
 int	init_thread(t_data *data)
 {
-	data->start_time = get_time();
+	data->start_time = ft_time();
 	if (thread_even(data->philo_lst, data->nb_of_philo))
 		return (-1);
 	usleep(100);

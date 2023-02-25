@@ -111,7 +111,7 @@ int	init_philo(t_data *data)
 		data->philo_lst[i].nb_meal = data->nb_time_must_eat;
 		data->philo_lst[i].data = data;
 		data->philo_lst[i].forks = forks;
-		data->philo_lst[i].last_meal = get_time();
+		data->philo_lst[i].last_meal = ft_time();
 		pthread_mutex_init(&data->philo_lst[i].forks[i], NULL);
 		i++;
 	}

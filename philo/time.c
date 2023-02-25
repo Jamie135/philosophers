@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-long int	get_time(void)
+long int	ft_time(void)
 {
 	long int		timestamp;
 	struct timeval	time;
@@ -23,17 +23,17 @@ long int	get_time(void)
 	return (timestamp);
 }
 
-void	handmade_usleep(long int timetosleep)
+void	ft_usleep(long int timetosleep)
 {
 	long int	start;
 	long int	actual_time;
 	long int	end;
 
-	start = get_time();
+	start = ft_time();
 	end = start + timetosleep;
 	while (1)
 	{
-		actual_time = get_time();
+		actual_time = ft_time();
 		if (actual_time >= end)
 			break ;
 		usleep(100);
@@ -41,11 +41,11 @@ void	handmade_usleep(long int timetosleep)
 }
 
 /*Afficher les logs et update actual_time apres avoir mange/dormi/pense*/
-long int	display(t_philo *philo, char *str)
+long int	ft_log(t_philo *philo, char *str)
 {
 	long int	actual_time;
 
-	actual_time = get_time();
+	actual_time = ft_time();
 	if (is_alive(philo) == 0)
 		return (0);
 	pthread_mutex_lock(&philo->data->print_mutex);

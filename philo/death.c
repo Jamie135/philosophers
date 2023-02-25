@@ -21,7 +21,7 @@ int	is_alive(t_philo *philo)
 		pthread_mutex_unlock(&philo->data->death_mutex);
 		return (0);
 	}
-	if (get_time() - philo->last_meal >= philo->data->time_to_die)
+	if (ft_time() - philo->last_meal >= philo->data->time_to_die)
 	{
 		pthread_mutex_unlock(&philo->data->death_mutex);
 		return (0);
@@ -51,7 +51,7 @@ void	check_philo_death(t_data *data)
 	i = 0;
 	while (1)
 	{
-		actual_time = get_time();
+		actual_time = ft_time();
 		pthread_mutex_lock(&data->meal_mutex);
 		if ((actual_time - data->philo_lst[i].last_meal) >= \
 		(long int)data->time_to_die)
@@ -72,7 +72,7 @@ void	check_time_of_death(struct s_philo *philo)
 {
 	long int	actual_time;
 
-	actual_time = get_time();
+	actual_time = ft_time();
 	pthread_mutex_lock(&philo->data->meal_mutex);
 	if ((actual_time - philo->last_meal) >= (long int)philo->data->time_to_die)
 	{

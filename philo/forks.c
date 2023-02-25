@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	lock_forks(t_philo *philo, t_data *data)
+void	pick_forks(t_philo *philo, t_data *data)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -26,7 +26,7 @@ void	lock_forks(t_philo *philo, t_data *data)
 	}
 }
 
-void	unlock_forks(t_philo *philo, t_data *data)
+void	release_forks(t_philo *philo, t_data *data)
 {
 	if (philo->id % 2 == 0)
 	{
