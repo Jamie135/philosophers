@@ -55,8 +55,8 @@ int		init_philo(t_data *data);
 
 /*--------start.c---------*/
 int		start(t_data *data);
-int		start_even_group(t_philo *philo_lst, int nb_philo);
-int		start_odd_group(t_philo *philo_lst, int nb_philo);
+int		thread_even(t_philo *philo_lst, int nb_philo);
+int		thread_odd(t_philo *philo_lst, int nb_philo);
 
 /*--------Routine---------*/
 void	*routine(void *arg);

@@ -21,13 +21,13 @@ RM = rm -f
 INC =	philo.h
 
 SRCS =	./philo.c \
-		./routine.c \
+		./actions.c \
 		./eat.c \
 		./init.c \
-		./start.c \
+		./thread.c \
 		./time.c \
 		./forks.c \
-		./stop.c \
+		./death.c \
 		./utils.c
 
 OBJS = $(SRCS:.c=.o)

@@ -12,28 +12,22 @@
 
 #include "philo.h"
 
-void	end(t_data *data)
+/* Verifier si death est vrai ou si l'attente depasse time_to_die, on arrete la routine dans ce cas*/
+int	is_alive(t_philo *philo)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->nb_of_philo)
+	pthread_mutex_lock(&philo->data->death_mutex);
+	if (philo->data->is_dead == true)
 	{
-		pthread_join(data->philo_lst[i].thread, NULL);
-		++i;
+		pthread_mutex_unlock(&philo->data->death_mutex);
+		return (0);
 	}
-	i = 0;
-	while (i < data->nb_of_philo)
+	if (get_time() - philo->last_meal >= philo->data->time_to_die)
 	{
-		pthread_mutex_destroy(&data->philo_lst[i].forks[i]);
-		++i;
+		pthread_mutex_unlock(&philo->data->death_mutex);
+		return (0);
 	}
-	pthread_mutex_destroy(&data->print_mutex);
-	free(data->philo_lst->forks);
-	free(data->philo_lst);
-	pthread_mutex_destroy(&data->meal_mutex);
-	pthread_mutex_destroy(&data->death_mutex);
-	return ;
+	pthread_mutex_unlock(&philo->data->death_mutex);
+	return (1);
 }
 
 void	kill_philo(t_data *data, long int actual_time, int i)

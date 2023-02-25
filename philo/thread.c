@@ -12,6 +12,32 @@
 
 #include "philo.h"
 
+void	*routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	if (philo->data->nb_of_philo == 1)
+	{
+		one_philo_eat(philo);
+		return (0);
+	}
+	if (philo->nb_meal == 0)
+	{
+		while (is_alive(philo) == 1)
+		{		
+			eat(philo);
+			sleep_and_think(philo);
+		}
+		return (0);
+	}
+	else
+	{
+		eat_while_philo_need(philo);
+		return (0);
+	}
+}
+
 /*Initialiser les threads qui vont executer les routines des philosophes pairs*/
 int	thread_even(t_philo *philo_lst, int nb_philo)
 {
@@ -58,4 +84,28 @@ int	start(t_data *data)
 	else
 		check_philo_death(data);
 	return (1);
+}
+
+void	end(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb_of_philo)
+	{
+		pthread_join(data->philo_lst[i].thread, NULL);
+		++i;
+	}
+	i = 0;
+	while (i < data->nb_of_philo)
+	{
+		pthread_mutex_destroy(&data->philo_lst[i].forks[i]);
+		++i;
+	}
+	pthread_mutex_destroy(&data->print_mutex);
+	free(data->philo_lst->forks);
+	free(data->philo_lst);
+	pthread_mutex_destroy(&data->meal_mutex);
+	pthread_mutex_destroy(&data->death_mutex);
+	return ;
 }
