@@ -56,7 +56,7 @@ int		init_philo(t_main *args);
 /* threads.c */
 void	*get_action(void *arg);
 int		thread_even(t_philo *philosopher, int nb_philo);
-int		thread_odd(t_philo *philosopherz, int nb_philo);
+int		thread_odd(t_philo *philosopher, int nb_philo);
 int		init_thread(t_main *args);
 void	end_thread(t_main *args);
 
