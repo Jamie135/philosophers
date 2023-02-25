@@ -55,18 +55,3 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
-
-/*Afficher les logs et update actual_time apres avoir mange/dormi/pense*/
-long int	display(t_philo *philo, char *str)
-{
-	long int	actual_time;
-
-	actual_time = get_time();
-	if (is_alive(philo) == 0)
-		return (0);
-	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%ldms %d %s\n", (actual_time - \
-	philo->data->start_time), philo->id, str);
-	pthread_mutex_unlock(&philo->data->print_mutex);
-	return (actual_time);
-}

@@ -70,10 +70,6 @@ int		is_alive(t_philo *philo);
 void	lock_forks(t_philo *philo, t_data *data);
 void	unlock_forks(t_philo *philo, t_data *data);
 
-/*--------Time_functions---------*/
-long	int	get_time(void);
-void	handmade_usleep(long int timetosleep);
-
 /*--------End_simulation---------*/
 void	end(t_data *data);
 void	kill_philo(t_data *data, long int actual_time, int i);
@@ -81,10 +77,14 @@ void	check_philo_death(t_data *data);
 int		endofmeal(t_data *data);
 void	check_philo_death_n_meals(t_data *data);
 
+/*--------Time_functions---------*/
+long	int	get_time(void);
+void	handmade_usleep(long int timetosleep);
+long	int	display(t_philo *philo, char *str);
+
 /*--------utils.c---------*/
 size_t	ft_strlen(char const *str);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
-long	int	display(t_philo *philo, char *str);
 
 #endif
