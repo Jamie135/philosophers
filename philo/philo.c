@@ -27,6 +27,6 @@ int	main(int argc, char **argv)
 		end_thread(&args);
 	}
 	else
-		printf("Error: There must be 4 or 5 arguments");
+		printf("Error: There must be 4 or 5 arguments.\n");
 	return (0);
 }

@@ -82,8 +82,10 @@ void	is_death(t_main *args);
 void	dead_or_alive(t_main *args);
 
 /* utils.c */
+int		ft_isspace(int c);
 size_t	ft_strlen(char const *str);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 
 #endif

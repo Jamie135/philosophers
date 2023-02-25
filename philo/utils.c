@@ -12,6 +12,11 @@
 
 #include "philo.h"
 
+int	ft_isspace(int c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
+}
+
 size_t	ft_strlen(char const *str)
 {
 	size_t	i;
@@ -31,9 +36,9 @@ int	ft_isdigit(int c)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	res;
+	int				i;
+	int				sign;
+	unsigned int	res;
 
 	i = 0;
 	sign = 1;
@@ -42,16 +47,36 @@ int	ft_atoi(const char *str)
 		|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f')
 		i++;
 	if (str[i] == '-')
-	{
 		sign = -1;
-		i++;
-	}
-	else if (str[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res = res * 10 + (str[i] - 48);
+		res = res * 10 + (unsigned int)(str[i] - 48);
 		i++;
 	}
-	return (sign * res);
+	return ((unsigned int)sign * res);
+}
+
+long	ft_atol(const char *str)
+{
+	long	n;
+	int		sign;
+
+	n = 0;
+	sign = 1;
+	while (ft_isspace(*str))
+		++str;
+	if (*str == '+' || *str == '-')
+		if (*(str++) == '-')
+			sign *= -1;
+	while (ft_isdigit(*str))
+	{
+		n = n * 10 + sign * (*str++ - '0');
+		if (sign < 0 && n > 0)
+			return (LONG_MIN);
+		else if (sign > 0 && n < 0)
+			return (LONG_MAX);
+	}
+	return (n);
 }

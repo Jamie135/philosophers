@@ -25,8 +25,11 @@ int	check_digits(int argc, char **argv)
 		{
 			if (!ft_isdigit(argv[i][j]))
 			{
-				printf("Error: arguments must be digit caracters.\n");
-				return (0);
+				if (argv[i][j] != '+')
+				{
+					printf("Error: Arguments must be positive numbers.\n");
+					return (0);
+				}
 			}
 			j++;
 		}
@@ -40,16 +43,16 @@ int	valid_digits(int argc, char **argv)
 	int	i;
 
 	i = 1;
+	if (ft_atoi(argv[1]) == 0)
+	{
+		printf("Error: There must be at least one philosopher.\n");
+		return (0);
+	}
 	while (i < argc)
 	{
-		if (ft_atoi(argv[i]) > INT_MAX || ft_strlen(argv[i]) > 11)
+		if (ft_atol(argv[i]) > INT_MAX)
 		{
-			printf("Error: int overflow.\n");
-			return (0);
-		}
-		if (ft_atoi(argv[i]) < 1)
-		{
-			printf("Error: invalid amount of philosophers.\n");
+			printf("Error: Arguments must not overflow.\n");
 			return (0);
 		}
 		i++;
@@ -65,7 +68,7 @@ int	check_args(int argc, char **argv)
 		return (0);
 	if (argc == 6 && ft_atoi(argv[5]) < 1)
 	{
-		printf("Error: not enough meals\n");
+		printf("Error: Not enough meals.\n");
 		return (0);
 	}
 	return (1);
