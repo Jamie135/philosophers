@@ -76,18 +76,18 @@ int	init_args(t_data *data, int ac, char **av)
 {
 	if (check_args(ac, av) == 0)
 		return (0);
-	data->nb_of_philo = ft_atoi(av[1]);
+	data->num = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		data->nb_time_must_eat = ft_atoi(av[5]);
+		data->meals = ft_atoi(av[5]);
 	else if (ac == 5)
-		data->nb_time_must_eat = 0;
+		data->meals = 0;
 	data->is_dead = false;
-	pthread_mutex_init(&data->print_mutex, NULL);
-	pthread_mutex_init(&data->meal_mutex, NULL);
-	pthread_mutex_init(&data->death_mutex, NULL);
+	pthread_mutex_init(&data->m_print, NULL);
+	pthread_mutex_init(&data->m_meal, NULL);
+	pthread_mutex_init(&data->m_death, NULL);
 	return (1);
 }
 
@@ -98,23 +98,23 @@ int	init_philo(t_data *data)
 	pthread_mutex_t	*forks;
 
 	i = 0;
-	forks = malloc(sizeof(pthread_mutex_t) * data->nb_of_philo);
-	data->philo_lst = malloc(sizeof(t_philo) * data->nb_of_philo);
-	if (!forks || !data->philo_lst)
+	forks = malloc(sizeof(pthread_mutex_t) * data->num);
+	data->philosopher = malloc(sizeof(t_philo) * data->num);
+	if (!forks || !data->philosopher)
 	{
 		free(forks);
 		return (-1);
 	}
-	while (i < data->nb_of_philo)
+	while (i < data->num)
 	{
-		data->philo_lst[i].id = i + 1;
-		data->philo_lst[i].nb_meal = data->nb_time_must_eat;
-		data->philo_lst[i].data = data;
-		data->philo_lst[i].forks = forks;
-		data->philo_lst[i].last_meal = ft_time();
-		pthread_mutex_init(&data->philo_lst[i].forks[i], NULL);
+		data->philosopher[i].id = i + 1;
+		data->philosopher[i].nb_meal = data->meals;
+		data->philosopher[i].data = data;
+		data->philosopher[i].forks = forks;
+		data->philosopher[i].last_meal = ft_time();
+		pthread_mutex_init(&data->philosopher[i].forks[i], NULL);
 		i++;
 	}
-	data->nb_time_must_eat = data->nb_of_philo;
+	data->meals = data->num;
 	return (1);
 }

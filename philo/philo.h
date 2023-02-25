@@ -23,17 +23,17 @@
 
 typedef struct s_data
 {
-	long int		start_time;
-	int				nb_of_philo;
+	long int		start;
+	int				num;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				nb_time_must_eat;
+	int				meals;
 	bool			is_dead;
-	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t	death_mutex;
-	struct s_philo	*philo_lst;
+	pthread_mutex_t	m_print;
+	pthread_mutex_t	m_meal;
+	pthread_mutex_t	m_death;
+	struct s_philo	*philosopher;
 }				t_data;
 
 typedef struct s_philo
@@ -55,8 +55,8 @@ int		init_philo(t_data *data);
 
 /* threads.c */
 void	*get_action(void *arg);
-int		thread_even(t_philo *philo_lst, int nb_philo);
-int		thread_odd(t_philo *philo_lst, int nb_philo);
+int		thread_even(t_philo *philosopher, int nb_philo);
+int		thread_odd(t_philo *philosopherz, int nb_philo);
 int		init_thread(t_data *data);
 void	end_thread(t_data *data);
 

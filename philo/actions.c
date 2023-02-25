@@ -19,16 +19,16 @@ void	eat(t_philo *philo)
 	pick_forks(philo, philo->data);
 	ft_log(philo, "has taken a fork");
 	ft_log(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->data->meal_mutex);
+	pthread_mutex_lock(&philo->data->m_meal);
 	actual_time = ft_log(philo, "is eating");
 	philo->last_meal = actual_time;
-	pthread_mutex_unlock(&philo->data->meal_mutex);
+	pthread_mutex_unlock(&philo->data->m_meal);
 	ft_usleep(philo->data->time_to_eat);
 	release_forks(philo, philo->data);
-	pthread_mutex_lock(&philo->data->meal_mutex);
+	pthread_mutex_lock(&philo->data->m_meal);
 	if (philo->nb_meal > 0)
 		philo->nb_meal--;
-	pthread_mutex_unlock(&philo->data->meal_mutex);
+	pthread_mutex_unlock(&philo->data->m_meal);
 }
 
 /* Un seul philosophe mange */
@@ -37,7 +37,7 @@ void	one_eat(t_philo *philo)
 	ft_log(philo, "has taken a fork");
 	usleep(philo->data->time_to_die * 1000);
 	printf("%ldms %d died\n", (ft_time() - \
-	philo->data->start_time), philo->id);
+	philo->data->start), philo->id);
 }
 
 /* Manger jusqu'a nb_meals */
@@ -49,9 +49,9 @@ void	full_eat(t_philo *philo)
 		if (philo->nb_meal > 0)
 			sleep_and_think(philo);
 	}
-	pthread_mutex_lock(&philo->data->meal_mutex);
-	philo->data->nb_time_must_eat--;
-	pthread_mutex_unlock(&philo->data->meal_mutex);
+	pthread_mutex_lock(&philo->data->m_meal);
+	philo->data->meals--;
+	pthread_mutex_unlock(&philo->data->m_meal);
 }
 
 void	sleep_and_think(t_philo *philo)

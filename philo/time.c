@@ -48,9 +48,9 @@ long int	ft_log(t_philo *philo, char *str)
 	actual_time = ft_time();
 	if (is_alive(philo) == 0)
 		return (0);
-	pthread_mutex_lock(&philo->data->print_mutex);
+	pthread_mutex_lock(&philo->data->m_print);
 	printf("%ldms %d %s\n", (actual_time - \
-	philo->data->start_time), philo->id, str);
-	pthread_mutex_unlock(&philo->data->print_mutex);
+	philo->data->start), philo->id, str);
+	pthread_mutex_unlock(&philo->data->m_print);
 	return (actual_time);
 }
