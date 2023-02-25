@@ -12,7 +12,15 @@
 
 NAME = philo
 
-SRCS = ./philo.c \
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+RM = rm -f
+
+INC =	philo.h
+
+SRCS =	./philo.c \
 		./routine.c \
 		./eat.c \
 		./init.c \
@@ -22,24 +30,20 @@ SRCS = ./philo.c \
 		./stop.c \
 		./utils.c
 
-GCC = cc
-FLAGS = -g -pthread -Wextra -Wall -Werror #-fsanitize=thread
-OBJS = ${SRCS:.c=.o}
+OBJS = $(SRCS:.c=.o)
 
-all: ${NAME}
+all: $(NAME)
 
-${NAME}: ${OBJS}
-	${GCC} ${FLAGS} ${OBJS} -I includes -o ${NAME}
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	rm -f ${OBJS}
+	$(RM) $(NAME)
+	$(RM) $(OBJS)
 
-fclean:
-	rm -f ${OBJS} ${NAME}
+fclean: clean
+	$(RM) $(NAME)
 
-re:	fclean all
-
-%.o: %.c ${INCL}
-	${GCC} ${FLAGS} -c $< -o ${<:.c=.o}
+re: fclean all
 
 .PHONY: all clean fclean re
