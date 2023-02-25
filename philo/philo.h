@@ -60,28 +60,28 @@ int		thread_odd(t_philo *philosopherz, int nb_philo);
 int		init_thread(t_main *args);
 void	end_thread(t_main *args);
 
-/*--------Routine---------*/
+/* actions.c */
 void	eat(t_philo *philo);
 void	one_eat(t_philo *philo);
 void	full_eat(t_philo *philo);
 void	sleep_and_think(t_philo *philo);
 
-/*--------Forks---------*/
+/* forks.c */
 void	pick_forks(t_philo *philo, t_main *args);
 void	release_forks(t_philo *philo, t_main *args);
 
-/*--------End_simulation---------*/
+/* time.c */
+long	int	ft_time(void);
+void	ft_usleep(long int timetosleep);
+long	int	ft_log(t_philo *philo, char *str);
+
+/* death.c */
 int		is_alive(t_philo *philo);
 void	kill_philo(t_main *args, long int actual_time, int i);
 void	is_death(t_main *args);
 void	dead_or_alive(t_main *args);
 
-/*--------Time_functions---------*/
-long	int	ft_time(void);
-void	ft_usleep(long int timetosleep);
-long	int	ft_log(t_philo *philo, char *str);
-
-/*--------utils.c---------*/
+/* utils.c */
 size_t	ft_strlen(char const *str);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
