@@ -62,16 +62,16 @@ void	end_thread(t_data *data);
 
 /*--------Routine---------*/
 void	eat(t_philo *philo);
+void	one_eat(t_philo *philo);
+void	full_eat(t_philo *philo);
 void	sleep_and_think(t_philo *philo);
-void	one_philo_eat(t_philo *philo);
-void	eat_while_philo_need(t_philo *philo);
-int		is_alive(t_philo *philo);
 
 /*--------Forks---------*/
 void	lock_forks(t_philo *philo, t_data *data);
 void	unlock_forks(t_philo *philo, t_data *data);
 
 /*--------End_simulation---------*/
+int		is_alive(t_philo *philo);
 void	kill_philo(t_data *data, long int actual_time, int i);
 void	check_philo_death(t_data *data);
 int		endofmeal(t_data *data);

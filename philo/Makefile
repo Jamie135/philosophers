@@ -22,7 +22,6 @@ INC =	philo.h
 
 SRCS =	./philo.c \
 		./actions.c \
-		./eat.c \
 		./init.c \
 		./threads.c \
 		./time.c \

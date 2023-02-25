@@ -31,7 +31,17 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 }
 
-void	eat_while_philo_need(t_philo *philo)
+/* Un seul philosophe mange */
+void	one_eat(t_philo *philo)
+{
+	display(philo, "has taken a fork");
+	usleep(philo->data->time_to_die * 1000);
+	printf("%ldms %d died\n", (get_time() - \
+	philo->data->start_time), philo->id);
+}
+
+/* Manger jusqu'a nb_meals */
+void	full_eat(t_philo *philo)
 {
 	while (is_alive(philo) == 1 && philo->nb_meal > 0)
 	{		
@@ -42,14 +52,6 @@ void	eat_while_philo_need(t_philo *philo)
 	pthread_mutex_lock(&philo->data->meal_mutex);
 	philo->data->nb_time_must_eat--;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
-}
-
-void	one_philo_eat(t_philo *philo)
-{
-	display(philo, "has taken a fork");
-	usleep(philo->data->time_to_die * 1000);
-	printf("%ldms %d died\n", (get_time() - \
-	philo->data->start_time), philo->id);
 }
 
 void	sleep_and_think(t_philo *philo)

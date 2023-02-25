@@ -19,7 +19,7 @@ void	*get_action(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->data->nb_of_philo == 1)
 	{
-		one_philo_eat(philo);
+		one_eat(philo);
 		return (0);
 	}
 	if (philo->nb_meal == 0)
@@ -33,7 +33,7 @@ void	*get_action(void *arg)
 	}
 	else
 	{
-		eat_while_philo_need(philo);
+		full_eat(philo);
 		return (0);
 	}
 }
