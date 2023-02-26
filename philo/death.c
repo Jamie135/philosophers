@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-/* Verifier si death est vrai ou si l'attente depasse time_to_die, on arrete la routine dans ce cas*/
+/* Verifier si death est vrai ou si l'attente depasse time_to_die, on arrete les actions dans ce cas*/
 int	is_alive(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->args->m_death);
@@ -42,7 +42,7 @@ void	kill_philo(t_main *args, long int time, int i)
 	pthread_mutex_unlock(&args->m_print);
 }
 
-/* Verifier death pour nb_phz*/
+/* Verifier quel philosophe est mort */
 void	is_death(t_main *args)
 {
 	int			i;
