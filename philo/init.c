@@ -27,7 +27,7 @@ int	check_digits(int argc, char **argv)
 			{
 				if (argv[i][j] != '+')
 				{
-					printf("Error: Arguments must be positive numbers.\n");
+					printf("Error: Arguments must be strictly positive numbers.\n");
 					return (0);
 				}
 			}
@@ -54,7 +54,7 @@ int	valid_digits(int argc, char **argv)
 		{
 			if (ft_atol(argv[i]) == 0)
 			{
-				printf("Error: Arguments must be positive numbers.\n");
+				printf("Error: Arguments must be strictly positive numbers.\n");
 				return (0);
 			}
 		}
@@ -67,6 +67,11 @@ int	check_args(int argc, char **argv)
 {
 	if (check_digits(argc, argv) == 0)
 		return (0);
+	if (ft_atol(argv[1]) > INT_MAX)
+	{
+		printf("Error: Arguments must not overflow.\n");
+		return (0);
+	}
 	if (ft_atoi(argv[1]) == 0)
 	{
 		printf("Error: There must be at least one philosopher.\n");
