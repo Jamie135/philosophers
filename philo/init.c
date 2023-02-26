@@ -87,7 +87,7 @@ int	init_args(t_main *args, int argc, char **argv)
 		args->meals = ft_atoi(argv[5]);
 	else if (argc == 5)
 		args->meals = 0;
-	args->dead = false;
+	args->dead = 0;
 	pthread_mutex_init(&args->m_print, NULL);
 	pthread_mutex_init(&args->m_meal, NULL);
 	pthread_mutex_init(&args->m_death, NULL);

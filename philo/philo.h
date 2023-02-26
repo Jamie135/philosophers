@@ -15,11 +15,11 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdbool.h>
 # include <stdio.h>
+# include <stdint.h>
+# include <limits.h>
 # include <pthread.h>
 # include <sys/time.h>
-# include <limits.h>
 
 typedef struct s_main
 {
@@ -29,7 +29,7 @@ typedef struct s_main
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals;
-	bool			dead;
+	int				dead;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	m_meal;
 	pthread_mutex_t	m_death;

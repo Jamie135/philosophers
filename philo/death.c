@@ -16,7 +16,7 @@
 int	is_alive(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->args->m_death);
-	if (philo->args->dead == true)
+	if (philo->args->dead == 1)
 	{
 		pthread_mutex_unlock(&philo->args->m_death);
 		return (0);
@@ -33,7 +33,7 @@ int	is_alive(t_philo *philo)
 void	kill_philo(t_main *args, long int actual_time, int i)
 {
 	pthread_mutex_lock(&args->m_death);
-	args->dead = true;
+	args->dead = 1;
 	pthread_mutex_unlock(&args->m_death);
 	pthread_mutex_lock(&args->m_print);
 	if (args->num > 1)
@@ -96,7 +96,7 @@ void	dead_or_alive(t_main *args)
 		}
 		pthread_mutex_unlock(&args->m_meal);
 		compare_times(&(args->philosopher[i]));
-		if (args->dead == true)
+		if (args->dead == 1)
 			return ;
 		i++;
 		if (i == (args->num - 1))
