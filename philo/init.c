@@ -94,7 +94,7 @@ int	init_args(t_main *args, int argc, char **argv)
 	return (1);
 }
 
-/*Initialiser les datas et les mutex pour chaque philosophes. La variable nb_time_must_eat devient nb_philo_that_still_have_to_eat*/
+/*Initialiser les datas et les mutex pour chaque philosophes. La variable meals devient nb_philo_that_still_have_to_eat*/
 int	init_philo(t_main *args)
 {
 	int				i;

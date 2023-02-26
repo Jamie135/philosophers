@@ -14,14 +14,14 @@
 
 void	eat(t_philo *philo)
 {
-	long int	actual_time;
+	long int	time;
 
 	pick_forks(philo, philo->args);
 	ft_log(philo, "has taken a fork");
 	ft_log(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->args->m_meal);
-	actual_time = ft_log(philo, "is eating");
-	philo->last_meal = actual_time;
+	time = ft_log(philo, "is eating");
+	philo->last_meal = time;
 	pthread_mutex_unlock(&philo->args->m_meal);
 	ft_usleep(philo->args->time_to_eat);
 	release_forks(philo, philo->args);

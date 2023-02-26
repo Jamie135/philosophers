@@ -30,34 +30,34 @@ int	is_alive(t_philo *philo)
 	return (1);
 }
 
-void	kill_philo(t_main *args, long int actual_time, int i)
+void	kill_philo(t_main *args, long int time, int i)
 {
 	pthread_mutex_lock(&args->m_death);
 	args->dead = 1;
 	pthread_mutex_unlock(&args->m_death);
 	pthread_mutex_lock(&args->m_print);
 	if (args->num > 1)
-		printf("%ldms %d died\n", (actual_time - \
+		printf("%ldms %d died\n", (time - \
 	args->start), args->philosopher[i].id);
 	pthread_mutex_unlock(&args->m_print);
 }
 
-/* Verifier death pour nb_philo = 1*/
+/* Verifier death pour nb_phz*/
 void	is_death(t_main *args)
 {
 	int			i;
-	long int	actual_time;
+	long int	time;
 
 	i = 0;
 	while (1)
 	{
-		actual_time = ft_time();
+		time = ft_time();
 		pthread_mutex_lock(&args->m_meal);
-		if ((actual_time - args->philosopher[i].last_meal) >= \
+		if ((time - args->philosopher[i].last_meal) >= \
 		(long int)args->time_to_die)
 		{
 			pthread_mutex_unlock(&args->m_meal);
-			kill_philo(args, actual_time, i);
+			kill_philo(args, time, i);
 			return ;
 		}
 		pthread_mutex_unlock(&args->m_meal);
@@ -70,13 +70,13 @@ void	is_death(t_main *args)
 
 void	compare_times(struct s_philo *philo)
 {
-	long int	actual_time;
+	long int	time;
 
-	actual_time = ft_time();
+	time = ft_time();
 	pthread_mutex_lock(&philo->args->m_meal);
-	if ((actual_time - philo->last_meal) >= (long int)philo->args->time_to_die)
+	if ((time - philo->last_meal) >= (long int)philo->args->time_to_die)
 	{
-		kill_philo(philo->args, actual_time, philo->id);
+		kill_philo(philo->args, time, philo->id);
 	}
 	pthread_mutex_unlock(&philo->args->m_meal);
 }

@@ -39,12 +39,12 @@ void	*get_action(void *arg)
 }
 
 /*Initialiser les threads qui vont executer les routines des philosophes pairs*/
-int	thread_even(t_philo *philosopher, int nb_philo)
+int	thread_even(t_philo *philosopher, int num)
 {
 	int	i;
 
 	i = 1;
-	while (i < nb_philo)
+	while (i < num)
 	{
 		if (pthread_create(&philosopher[i].thread, NULL, \
 		&get_action, &philosopher[i]) != 0)
@@ -55,12 +55,12 @@ int	thread_even(t_philo *philosopher, int nb_philo)
 }
 
 /*Initialiser les threads qui vont executer les routines des philosophes impairs*/
-int	thread_odd(t_philo *philosopher, int nb_philo)
+int	thread_odd(t_philo *philosopher, int num)
 {
 	int	i;
 
 	i = 0;
-	while (i < nb_philo)
+	while (i < num)
 	{
 		if (pthread_create(&philosopher[i].thread, NULL, \
 		&get_action, &philosopher[i]) != 0)

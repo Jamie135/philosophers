@@ -55,8 +55,8 @@ int		init_philo(t_main *args);
 
 /* threads.c */
 void	*get_action(void *arg);
-int		thread_even(t_philo *philosopher, int nb_philo);
-int		thread_odd(t_philo *philosopher, int nb_philo);
+int		thread_even(t_philo *philosopher, int num);
+int		thread_odd(t_philo *philosopher, int num);
 int		init_thread(t_main *args);
 void	end_thread(t_main *args);
 
@@ -72,12 +72,12 @@ void	release_forks(t_philo *philo, t_main *args);
 
 /* time.c */
 long	int	ft_time(void);
-void	ft_usleep(long int timetosleep);
+void	ft_usleep(long int sleep);
 long	int	ft_log(t_philo *philo, char *str);
 
 /* death.c */
 int		is_alive(t_philo *philo);
-void	kill_philo(t_main *args, long int actual_time, int i);
+void	kill_philo(t_main *args, long int time, int i);
 void	is_death(t_main *args);
 void	dead_or_alive(t_main *args);
 

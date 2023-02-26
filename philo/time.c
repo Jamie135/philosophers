@@ -23,34 +23,34 @@ long int	ft_time(void)
 	return (timestamp);
 }
 
-void	ft_usleep(long int timetosleep)
+void	ft_usleep(long int sleep)
 {
 	long int	start;
-	long int	actual_time;
+	long int	time;
 	long int	end;
 
 	start = ft_time();
-	end = start + timetosleep;
+	end = start + sleep;
 	while (1)
 	{
-		actual_time = ft_time();
-		if (actual_time >= end)
+		time = ft_time();
+		if (time >= end)
 			break ;
 		usleep(100);
 	}
 }
 
-/*Afficher les logs et update actual_time apres avoir mange/dormi/pense*/
+/*Afficher les logs et update time apres avoir mange/dormi/pense*/
 long int	ft_log(t_philo *philo, char *str)
 {
-	long int	actual_time;
+	long int	time;
 
-	actual_time = ft_time();
+	time = ft_time();
 	if (is_alive(philo) == 0)
 		return (0);
 	pthread_mutex_lock(&philo->args->m_print);
-	printf("%ldms %d %s\n", (actual_time - \
+	printf("%ldms %d %s\n", (time - \
 	philo->args->start), philo->id, str);
 	pthread_mutex_unlock(&philo->args->m_print);
-	return (actual_time);
+	return (time);
 }
