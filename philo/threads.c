@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:22:44 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 15:19:59 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:43:30 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*get_action(void *arg)
 	}
 }
 
-/*Initialiser les threads qui vont executer les routines des philosophes pairs*/
+/*Init les threads qui vont executer les actions des philo pairs*/
 int	thread_even(t_philo *philosopher, int num)
 {
 	int	i;
@@ -54,7 +54,7 @@ int	thread_even(t_philo *philosopher, int num)
 	return (0);
 }
 
-/*Initialiser les threads qui vont executer les routines des philosophes impairs*/
+/*Init les threads qui vont executer les actions des philo impairs*/
 int	thread_odd(t_philo *philosopher, int num)
 {
 	int	i;

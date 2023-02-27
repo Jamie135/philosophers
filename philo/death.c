@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_simulation.c                                   :+:      :+:    :+:   */
+/*   death.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:22:13 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:22:14 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:42:25 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/* Verifier si death est vrai ou si l'attente depasse time_to_die, on arrete les actions dans ce cas*/
+/* Verifier si death est vrai ou si l'attente depasse time_to_die.*/
 int	is_alive(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->args->m_death);

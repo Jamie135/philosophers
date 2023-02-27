@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:21:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 15:08:19 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:41:33 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	check_digits(int argc, char **argv)
 			{
 				if (argv[i][j] != '+')
 				{
-					printf("Error: Arguments must be strictly positive numbers.\n");
+					printf("Error: Arguments must be \
+						strictly positive numbers.\n");
 					return (0);
 				}
 			}
@@ -107,7 +108,8 @@ int	init_args(t_main *args, int argc, char **argv)
 	return (1);
 }
 
-/*Initialiser les datas et les mutex pour chaque philosophes. La variable meals devient nb_philo_that_still_have_to_eat*/
+/*Initialiser les datas et les mutex pour chaque philosophes.
+La variable meals devient nb_philo_that_still_have_to_eat*/
 int	init_philo(t_main *args)
 {
 	int				i;
