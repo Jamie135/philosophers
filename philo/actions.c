@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:22:37 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:22:38 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:22:44 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*Manger*/
 void	eat(t_philo *philo)
 {
 	long int	time;
@@ -31,7 +32,7 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->args->m_meal);
 }
 
-/* Un seul philosophe mange */
+/*Un seul philosophe mange*/
 void	one_eat(t_philo *philo)
 {
 	ft_log(philo, "has taken a fork");
@@ -40,7 +41,7 @@ void	one_eat(t_philo *philo)
 	philo->args->start), philo->id);
 }
 
-/* Manger jusqu'a nb_meals */
+/*Manger meals_to_eat fois*/
 void	full_eat(t_philo *philo)
 {
 	while (is_alive(philo) == 1 && philo->meals_to_eat > 0)
@@ -54,6 +55,7 @@ void	full_eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->args->m_meal);
 }
 
+/*Dormir et penser*/
 void	sleep_and_think(t_philo *philo)
 {
 	if (is_alive(philo) == 0)

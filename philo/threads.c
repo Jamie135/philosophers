@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:22:44 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 14:55:22 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:20:29 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int	init_thread(t_main *args)
 	return (1);
 }
 
-/*Attendre l'execution de chaque thread philo[i] afin de
-destroy et free les mutex et les variables*/
+/*Attendre que l'execution de chaque thread (philo[i]) soit terminer
+afin de destroy et free les mutex et les variables*/
 void	end_thread(t_main *args)
 {
 	int	i;

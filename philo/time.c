@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_functions.c                                   :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:22:49 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:22:50 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:25:58 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*Retourner le temps actuel em ms*/
 long int	ft_time(void)
 {
 	long int		timestamp;
@@ -23,6 +24,7 @@ long int	ft_time(void)
 	return (timestamp);
 }
 
+/*Fonction usleep en ms*/
 void	ft_usleep(long int sleep)
 {
 	long int	start;
@@ -40,7 +42,7 @@ void	ft_usleep(long int sleep)
 	}
 }
 
-/*Afficher les logs et update time apres avoir mange/dormi/pense*/
+/*Afficher les logs et update time pour last_meal*/
 long int	ft_log(t_philo *philo, char *str)
 {
 	long int	time;

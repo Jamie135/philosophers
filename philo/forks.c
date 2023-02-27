@@ -6,12 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:22:08 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/24 14:22:09 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:24:27 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*Prendre deux fourchettes*/
 void	pick_forks(t_philo *philo, t_main *args)
 {
 	if (philo->id % 2 == 0)
@@ -26,6 +27,7 @@ void	pick_forks(t_philo *philo, t_main *args)
 	}
 }
 
+/*Lacher les deux fourchettes*/
 void	release_forks(t_philo *philo, t_main *args)
 {
 	if (philo->id % 2 == 0)
