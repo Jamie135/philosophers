@@ -6,7 +6,7 @@
 #    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 14:21:26 by pbureera          #+#    #+#              #
-#    Updated: 2023/02/27 18:38:17 by pbureera         ###   ########.fr        #
+#    Updated: 2023/02/27 19:20:28 by pbureera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS =	./philo.c \
 		./time.c \
 		./forks.c \
 		./death.c \
-		./protection.c \
+		./protection_malloc.c \
+		./protection_pthread.c \
 		./utils.c
 
 OBJS = $(SRCS:.c=.o)

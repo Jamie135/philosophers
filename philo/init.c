@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:21:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 19:03:14 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:15:06 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ int	init_args(t_main *args, int argc, char **argv)
 	else if (argc == 5)
 		args->meals = 0;
 	args->dead = 0;
-	if (protect_mutex(&args->m_print) != 0)
+	if (protect_mutex(&args->m_print, NULL, NULL) != 0)
 		return (0);
-	if (protect_mutex(&args->m_meal) != 0)
+	if (protect_mutex(&args->m_meal, NULL, NULL) != 0)
 		return (0);
-	if (protect_mutex(&args->m_death) != 0)
+	if (protect_mutex(&args->m_death, NULL, NULL) != 0)
 		return (0);
 	return (1);
 }
