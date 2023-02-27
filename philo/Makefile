@@ -6,7 +6,7 @@
 #    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 14:21:26 by pbureera          #+#    #+#              #
-#    Updated: 2023/02/24 15:14:24 by pbureera         ###   ########.fr        #
+#    Updated: 2023/02/27 14:21:42 by pbureera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-g -pthread -fsanitize=thread
 
 RM = rm -f
 
