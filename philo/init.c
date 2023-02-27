@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:21:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 12:41:33 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:03:14 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	check_digits(int argc, char **argv)
 			{
 				if (argv[i][j] != '+')
 				{
-					printf("Error: Arguments must be \
-						strictly positive numbers.\n");
+					printf("Error: Must be strictly positive numbers.\n");
 					return (0);
 				}
 			}
@@ -55,7 +54,7 @@ int	valid_digits(int argc, char **argv)
 		{
 			if (ft_atol(argv[i]) == 0)
 			{
-				printf("Error: Arguments must be strictly positive numbers.\n");
+				printf("Error: Must be strictly positive numbers.\n");
 				return (0);
 			}
 		}
@@ -102,9 +101,12 @@ int	init_args(t_main *args, int argc, char **argv)
 	else if (argc == 5)
 		args->meals = 0;
 	args->dead = 0;
-	pthread_mutex_init(&args->m_print, NULL);
-	pthread_mutex_init(&args->m_meal, NULL);
-	pthread_mutex_init(&args->m_death, NULL);
+	if (protect_mutex(&args->m_print) != 0)
+		return (0);
+	if (protect_mutex(&args->m_meal) != 0)
+		return (0);
+	if (protect_mutex(&args->m_death) != 0)
+		return (0);
 	return (1);
 }
 
@@ -117,12 +119,11 @@ int	init_philo(t_main *args)
 
 	i = 0;
 	forks = malloc(sizeof(pthread_mutex_t) * args->num);
-	args->philosopher = malloc(sizeof(t_philo) * args->num);
-	if (!forks || !args->philosopher)
-	{
-		free(forks);
+	if (!protect_malloc_forks(forks))
 		return (-1);
-	}
+	args->philosopher = malloc(sizeof(t_philo) * args->num);
+	if (!protect_malloc_philo(args->philosopher, forks))
+		return (-1);
 	while (i < args->num)
 	{
 		args->philosopher[i].id = i + 1;
