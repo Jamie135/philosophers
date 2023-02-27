@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:21:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 19:15:06 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:44:15 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,9 @@ int	init_philo(t_main *args)
 		args->philosopher[i].args = args;
 		args->philosopher[i].forks = forks;
 		args->philosopher[i].last_meal = ft_time();
-		pthread_mutex_init(&args->philosopher[i].forks[i], NULL);
+		if (protect_mutex(&args->philosopher[i].forks[i], \
+			forks, args->philosopher) != 0)
+			return (-1);
 		i++;
 	}
 	args->meals = args->num;
