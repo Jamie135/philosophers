@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:22:49 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 15:25:58 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:18:47 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ long int	ft_log(t_philo *philo, char *str)
 	time = ft_time();
 	if (is_alive(philo) == 0)
 		return (0);
-	pthread_mutex_lock(&philo->args->m_print);
+	if (pthread_mutex_lock(&philo->args->m_print) != 0)
+		return (0);
 	printf("%ldms %d %s\n", (time - \
 	philo->args->start), philo->id, str);
-	pthread_mutex_unlock(&philo->args->m_print);
+	if (pthread_mutex_unlock(&philo->args->m_print) != 0)
+		return (0);
 	return (time);
 }

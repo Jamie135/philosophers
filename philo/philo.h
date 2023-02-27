@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:20:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 19:44:21 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:04:01 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,11 @@ void	kill_philo(t_main *args, long int time, int i);
 void	is_death(t_main *args);
 void	dead_or_alive(t_main *args);
 
-/* protection_malloc.c */
-int		protect_malloc_philo(t_philo *philo, pthread_mutex_t *forks);
-int		protect_malloc_forks(pthread_mutex_t *forks);
-
-/* protection_pthread.c */
+/* protection.c */
 int		protect_mutex(pthread_mutex_t *m, \
 						pthread_mutex_t *forks, t_philo *philo);
+int		protect_malloc_philo(t_philo *philo, pthread_mutex_t *forks);
+int		protect_malloc_forks(pthread_mutex_t *forks);
 
 /* utils.c */
 int		ft_isspace(int c);

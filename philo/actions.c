@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:22:37 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 15:22:44 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:01:14 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ void	eat(t_philo *philo)
 	pick_forks(philo, philo->args);
 	ft_log(philo, "has taken a fork");
 	ft_log(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->args->m_meal);
+	if (pthread_mutex_lock(&philo->args->m_meal) != 0)
+		return ;
 	time = ft_log(philo, "is eating");
 	philo->last_meal = time;
-	pthread_mutex_unlock(&philo->args->m_meal);
+	if (pthread_mutex_unlock(&philo->args->m_meal) != 0)
+		return ;
 	ft_usleep(philo->args->time_to_eat);
 	release_forks(philo, philo->args);
-	pthread_mutex_lock(&philo->args->m_meal);
+	if (pthread_mutex_lock(&philo->args->m_meal) != 0)
+		return ;
 	if (philo->meals_to_eat > 0)
 		philo->meals_to_eat--;
-	pthread_mutex_unlock(&philo->args->m_meal);
+	if (pthread_mutex_unlock(&philo->args->m_meal) != 0)
+		return ;
 }
 
 /*Un seul philosophe mange*/
@@ -50,9 +54,11 @@ void	full_eat(t_philo *philo)
 		if (philo->meals_to_eat > 0)
 			sleep_and_think(philo);
 	}
-	pthread_mutex_lock(&philo->args->m_meal);
+	if (pthread_mutex_lock(&philo->args->m_meal) != 0)
+		return ;
 	philo->args->meals--;
-	pthread_mutex_unlock(&philo->args->m_meal);
+	if (pthread_mutex_unlock(&philo->args->m_meal) != 0)
+		return ;
 }
 
 /*Dormir et penser*/
