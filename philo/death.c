@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:22:13 by pbureera          #+#    #+#             */
-/*   Updated: 2023/02/27 20:17:39 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:20:36 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	is_death(t_main *args)
 		}
 		if (pthread_mutex_unlock(&args->m_meal) != 0)
 			return ;
-		i++;
+		if (args->num != 1)
+			i++;
 		if (i == (args->num - 1))
 			i = 0;
 		usleep(10);
