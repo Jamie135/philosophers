@@ -6,7 +6,7 @@
 #    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 14:21:26 by pbureera          #+#    #+#              #
-#    Updated: 2023/02/27 20:03:33 by pbureera         ###   ########.fr        #
+#    Updated: 2023/03/03 14:31:02 by pbureera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	$(RM) $(NAME)
 	$(RM) $(OBJS)
 
 fclean: clean
